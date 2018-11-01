@@ -3,7 +3,7 @@ Jogo eletrônico de estratégia desenvolvido como trabalho para a disciplina de 
 
 # Utilizando o Projeto
 ## Requisitos
-- [OpenGl 3.3] (https://www.opengl.org/) ou superior
+- [OpenGl 3.3](https://www.opengl.org/) ou superior
 - CodeBlocks IDE. *opcional
 
 ## Rodando o Projeto
