@@ -5,7 +5,7 @@
 //    INF01047 Fundamentos de Computação Gráfica
 //               Prof. Eduardo Gastal
 //
-//                   LABORATÓRIO 4
+//                   Sons of War
 //
 
 // Arquivos "headers" padrões de C podem ser incluídos em um
@@ -89,6 +89,7 @@ GLuint LoadShader_Fragment(const char* filename); // Carrega um fragment shader
 void LoadShader(const char* filename, GLuint shader_id); // Função utilizada pelas duas acima
 GLuint CreateGpuProgram(GLuint vertex_shader_id, GLuint fragment_shader_id); // Cria um programa de GPU
 void PrintObjModelInfo(ObjModel*); // Função para debugging
+void BuildMeshes(int argc, char* argv[]);
 
 // Declaração de funções auxiliares para renderizar texto dentro da janela
 // OpenGL. Estas funções estão definidas no arquivo "textrendering.cpp".
@@ -184,6 +185,55 @@ GLint view_uniform;
 GLint projection_uniform;
 GLint object_id_uniform;
 
+// Classes
+class Lookat_Camera{
+public:
+    //Vetores
+    glm::vec4 position;     // Ponto "c", centro da câmera
+    glm::vec4 lookat;   // Ponto "l", para onde a câmera (look-at) estará sempre olhando
+    glm::vec4 view;         // Vetor "view", sentido para onde a câmera está virada
+    glm::vec4 up;           // Vetor "up" fixado para apontar para o "céu" (eito Y global)
+    //Ângulos
+    float theta = 0.0f; // Ângulo no plano ZX em relação ao eixo Z
+    float phi = 0.0f;   // Ângulo em relação ao eixo Y
+    // Outras vars
+    float distance = 3.5f; // Distância da câmera para a origem
+    //Parâmetros
+    float speed;
+    float nearplane;  // Posição do "near plane"
+    float farplane; // Posição do "far plane"
+
+    //Funções
+    void init();
+    void move(glm::vec4 direction);
+    void look(float dtheta, float dphi);
+    void update_camera();
+    void set_nearplane(float near_value);
+    void set_farplane(float far_value);
+};
+
+class Free_Camera{
+public:
+    // Vetores
+    glm::vec4 position;
+    glm::vec4 view;
+    glm::vec4 up;
+    glm::vec4 right;
+    glm::vec4 v;
+    // Ângulos
+    float phi;
+    // Parâmetros
+    float speed;
+
+    void init();
+    void move(glm::vec4 direction);
+    void rotate(glm::vec4 axis, float angle);
+    void look(float dtheta, float dphi);
+};
+
+//Câmeras
+Lookat_Camera lookat_camera;
+
 int main(int argc, char* argv[])
 {
     // Inicializamos a biblioteca GLFW, utilizada para criar uma janela do
@@ -213,7 +263,7 @@ int main(int argc, char* argv[])
     // Criamos uma janela do sistema operacional, com 800 colunas e 600 linhas
     // de pixels, e com título "INF01047 ...".
     GLFWwindow* window;
-    window = glfwCreateWindow(800, 600, "INF01047 - 262524 - Douglas Souza Flores", NULL, NULL);
+    window = glfwCreateWindow(800, 600, "INF01047 - Sons of War", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -258,23 +308,7 @@ int main(int argc, char* argv[])
     LoadShadersFromFiles();
 
     // Construímos a representação de objetos geométricos através de malhas de triângulos
-    ObjModel spheremodel("../../data/sphere.obj");
-    ComputeNormals(&spheremodel);
-    BuildTrianglesAndAddToVirtualScene(&spheremodel);
-
-    ObjModel bunnymodel("../../data/bunny.obj");
-    ComputeNormals(&bunnymodel);
-    BuildTrianglesAndAddToVirtualScene(&bunnymodel);
-
-    ObjModel planemodel("../../data/plane.obj");
-    ComputeNormals(&planemodel);
-    BuildTrianglesAndAddToVirtualScene(&planemodel);
-
-    if ( argc > 1 )
-    {
-        ObjModel model(argv[1]);
-        BuildTrianglesAndAddToVirtualScene(&model);
-    }
+    BuildMeshes(argc, argv);
 
     // Inicializamos o código para renderização de texto.
     TextRendering_Init();
@@ -292,6 +326,9 @@ int main(int argc, char* argv[])
     glm::mat4 the_projection;
     glm::mat4 the_model;
     glm::mat4 the_view;
+
+    // Iniciando câmera lookat
+    lookat_camera.init();
 
     // Ficamos em loop, renderizando, até que o usuário feche a janela
     while (!glfwWindowShouldClose(window))
@@ -314,40 +351,19 @@ int main(int argc, char* argv[])
         // os shaders de vértice e fragmentos).
         glUseProgram(program_id);
 
-        // Computamos a posição da câmera utilizando coordenadas esféricas.  As
-        // variáveis g_CameraDistance, g_CameraPhi, e g_CameraTheta são
-        // controladas pelo mouse do usuário. Veja as funções CursorPosCallback()
-        // e ScrollCallback().
-        float r = g_CameraDistance;
-        float y = r*sin(g_CameraPhi);
-        float z = r*cos(g_CameraPhi)*cos(g_CameraTheta);
-        float x = r*cos(g_CameraPhi)*sin(g_CameraTheta);
-
-        // Abaixo definimos as varáveis que efetivamente definem a câmera virtual.
-        // Veja slides 172-182 do documento "Aula_08_Sistemas_de_Coordenadas.pdf".
-        glm::vec4 camera_position_c  = glm::vec4(x,y,z,1.0f); // Ponto "c", centro da câmera
-        glm::vec4 camera_lookat_l    = glm::vec4(0.0f,0.0f,0.0f,1.0f); // Ponto "l", para onde a câmera (look-at) estará sempre olhando
-        glm::vec4 camera_view_vector = camera_lookat_l - camera_position_c; // Vetor "view", sentido para onde a câmera está virada
-        glm::vec4 camera_up_vector   = glm::vec4(0.0f,1.0f,0.0f,0.0f); // Vetor "up" fixado para apontar para o "céu" (eito Y global)
-
         // Computamos a matriz "View" utilizando os parâmetros da câmera para
-        // definir o sistema de coordenadas da câmera.  Veja slide 186 do documento "Aula_08_Sistemas_de_Coordenadas.pdf".
-        glm::mat4 view = Matrix_Camera_View(camera_position_c, camera_view_vector, camera_up_vector);
+        // definir o sistema de coordenadas da câmera.
+        glm::mat4 view = Matrix_Camera_View(lookat_camera.position, lookat_camera.view, lookat_camera.up);
 
         // Agora computamos a matriz de Projeção.
         glm::mat4 projection;
-
-        // Note que, no sistema de coordenadas da câmera, os planos near e far
-        // estão no sentido negativo! Veja slides 190-193 do documento "Aula_09_Projecoes.pdf".
-        float nearplane = -0.1f;  // Posição do "near plane"
-        float farplane  = -10.0f; // Posição do "far plane"
 
         if (g_UsePerspectiveProjection)
         {
             // Projeção Perspectiva.
             // Para definição do field of view (FOV), veja slide 227 do documento "Aula_09_Projecoes.pdf".
-            float field_of_view = 3.141592 / 3.0f;
-            projection = Matrix_Perspective(field_of_view, g_ScreenRatio, nearplane, farplane);
+            float field_of_view = 3.141592 / 2.4f;
+            projection = Matrix_Perspective(field_of_view, g_ScreenRatio, lookat_camera.nearplane, lookat_camera.farplane);
         }
         else
         {
@@ -360,7 +376,7 @@ int main(int argc, char* argv[])
             float b = -t;
             float r = t*g_ScreenRatio;
             float l = -r;
-            projection = Matrix_Orthographic(l, r, b, t, nearplane, farplane);
+            projection = Matrix_Orthographic(l, r, b, t, lookat_camera.nearplane, lookat_camera.farplane);
         }
 
         glm::mat4 model = Matrix_Identity(); // Transformação identidade de modelagem
@@ -374,6 +390,7 @@ int main(int argc, char* argv[])
         #define SPHERE 0
         #define BUNNY  1
         #define PLANE  2
+        #define CUBE   3
 
         // Desenhamos o modelo da esfera
         model = Matrix_Translate(-1.0f,0.0f,0.0f);
@@ -396,6 +413,13 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
         glUniform1i(object_id_uniform, PLANE);
         DrawVirtualObject("plane");
+
+        //Desenhamos o modelo do cubo
+        model = Matrix_Translate(0.0f,0.0f,0.0f)
+              * Matrix_Scale(2.0,1.0f,2.0f);
+        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+        glUniform1i(object_id_uniform, CUBE);
+        DrawVirtualObject("cube");
 
         // Pegamos um vértice com coordenadas de modelo (0.5, 0.5, 0.5, 1) e o
         // passamos por todos os sistemas de coordenadas armazenados nas
@@ -964,19 +988,7 @@ void CursorPosCallback(GLFWwindow* window, double xpos, double ypos)
         float dx = xpos - g_LastCursorPosX;
         float dy = ypos - g_LastCursorPosY;
 
-        // Atualizamos parâmetros da câmera com os deslocamentos
-        g_CameraTheta -= 0.01f*dx;
-        g_CameraPhi   += 0.01f*dy;
-
-        // Em coordenadas esféricas, o ângulo phi deve ficar entre -pi/2 e +pi/2.
-        float phimax = 3.141592f/2;
-        float phimin = -phimax;
-
-        if (g_CameraPhi > phimax)
-            g_CameraPhi = phimax;
-
-        if (g_CameraPhi < phimin)
-            g_CameraPhi = phimin;
+        lookat_camera.look(dx,dy);
 
         // Atualizamos as variáveis globais para armazenar a posição atual do
         // cursor como sendo a última posição conhecida do cursor.
@@ -1022,7 +1034,7 @@ void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 {
     // Atualizamos a distância da câmera para a origem utilizando a
     // movimentação da "rodinha", simulando um ZOOM.
-    g_CameraDistance -= 0.1f*yoffset;
+    lookat_camera.distance -= 0.1f*yoffset;
 
     // Uma câmera look-at nunca pode estar exatamente "em cima" do ponto para
     // onde ela está olhando, pois isto gera problemas de divisão por zero na
@@ -1030,8 +1042,10 @@ void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
     // nunca pode ser zero. Versões anteriores deste código possuíam este bug,
     // o qual foi detectado pelo aluno Vinicius Fraga (2017/2).
     const float verysmallnumber = std::numeric_limits<float>::epsilon();
-    if (g_CameraDistance < verysmallnumber)
-        g_CameraDistance = verysmallnumber;
+    if (lookat_camera.distance < verysmallnumber)
+        lookat_camera.distance = verysmallnumber;
+
+    lookat_camera.update_camera();
 }
 
 // Definição da função que será chamada sempre que o usuário pressionar alguma
@@ -1384,6 +1398,142 @@ void PrintObjModelInfo(ObjModel* model)
   }
 }
 
+void BuildMeshes(int argc, char* argv[]){
+    ObjModel spheremodel("../../data/sphere.obj");
+    ComputeNormals(&spheremodel);
+    BuildTrianglesAndAddToVirtualScene(&spheremodel);
+
+    ObjModel bunnymodel("../../data/bunny.obj");
+    ComputeNormals(&bunnymodel);
+    BuildTrianglesAndAddToVirtualScene(&bunnymodel);
+
+    ObjModel planemodel("../../data/plane.obj");
+    ComputeNormals(&planemodel);
+    BuildTrianglesAndAddToVirtualScene(&planemodel);
+
+    ObjModel cubemodel("../../data/cube.obj");
+    ComputeNormals(&cubemodel);
+    BuildTrianglesAndAddToVirtualScene(&cubemodel);
+
+    if ( argc > 1 )
+    {
+        ObjModel model(argv[1]);
+        BuildTrianglesAndAddToVirtualScene(&model);
+    }
+}
+
 // set makeprg=cd\ ..\ &&\ make\ run\ >/dev/null
 // vim: set spell spelllang=pt_br :
 
+// Funções de Classes
+// Camera Livre
+void Free_Camera::init()
+{
+    position = glm::vec4(0.0f, 2.0f, 2.0f, 1.0f);
+    view = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f) - position;
+    view = view / norm(view);
+    up = glm::vec4(0.0f, 1.0f, 0.0f, 0.0f);
+    right = crossproduct(view, up);
+    right = right / norm(right);
+    v = crossproduct(view, right);
+
+    phi = acos((dotproduct(view, up)) / (norm(view)*norm(up)));
+    speed = 0.01f;
+}
+
+void Free_Camera::move(glm::vec4 direction)
+{
+    position.x += speed*direction.x;
+    position.y += speed*direction.y;
+    position.z += speed*direction.z;
+}
+
+void Free_Camera::rotate(glm::vec4 axis, float angle)
+{
+    view = Matrix_Rotate(angle, axis) * view;
+    //Atualiza os vetores da câmera
+    right = crossproduct(view, up);
+    right = right / norm(right);
+
+    v = crossproduct(right, view);
+    v = v / norm(v);
+}
+
+void Free_Camera::look(float dtheta, float dphi)
+{
+    float phimax = 3.141f;
+    float phimin = 0.01;
+
+    phi += 0.005f*dphi;
+    if (phi < phimin)
+        phi = phimin;
+    else if (phi > phimax)
+        phi = phimax;
+    else
+        rotate(right, -0.005f*dphi);
+
+    //Rotacionando view no eixo y (Olhar para os lados)
+    rotate(up, -0.005f*dtheta);
+}
+
+// Camera Look-at-------------------------------
+void Lookat_Camera::init(){
+    float r = distance;
+    position = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+    // Computamos a posição da câmera utilizando coordenadas esféricas.
+    position.x = r*cos(phi)*sin(theta);
+    position.y = r*sin(phi);
+    position.z = r*cos(phi)*cos(theta);
+    // Outros vetores
+    up = glm::vec4(0.0f, 1.0f, 0.0f, 0.0f);
+    lookat = glm::vec4(0.0f,0.0f,0.0f,1.0f);
+    view = lookat - position;
+    //Parâmetros
+    speed = 0.01f;
+    nearplane = -0.1f;
+    farplane = -10.0f;
+}
+
+void Lookat_Camera::move(glm::vec4 direction)
+{
+    position.x += speed*direction.x;
+    position.y += speed*direction.y;
+    position.z += speed*direction.z;
+}
+
+void Lookat_Camera::look(float dtheta, float dphi)
+{
+    float phimax = 3.141592f/2;
+    float phimin = -phimax;
+
+    theta -= 0.01f*dtheta;
+    phi += 0.01f*dphi;
+
+    if (phi < phimin)
+        phi = phimin;
+
+    if (phi > phimax)
+        phi = phimax;
+
+    update_camera();
+}
+
+void Lookat_Camera::update_camera()
+{
+    float r = distance;
+    // Computamos a posição da câmera utilizando coordenadas esféricas.
+    position.x = r*cos(phi)*sin(theta);
+    position.y = r*sin(phi);
+    position.z = r*cos(phi)*cos(theta);
+
+    view = lookat - position;
+}
+void Lookat_Camera::set_nearplane(float near_value)
+{
+    nearplane = near_value;
+}
+
+void Lookat_Camera::set_farplane(float far_value)
+{
+    farplane = far_value;
+}
