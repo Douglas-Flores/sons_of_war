@@ -10,9 +10,9 @@ Para compilar e executar este projeto no Windows, baixe a IDE Code::Blocks em ht
 Para compilar e executar este projeto no Linux, primeiro você precisa instalar as bibliotecas necessárias. Para tanto, execute o comando abaixo em um terminal.
 Esse é normalmente suficiente em uma instalação de Linux Ubuntu:
 
-#+begin_src shell :results output
+```bash
 sudo apt-get install build-essential make libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxcb1-dev libxext-dev libxrender-dev libxfixes-dev libxau-dev libxdmcp-dev
-#+end_src
+```
 
 Após a instalação das bibliotecas acima, você possui duas opções para compilação: utilizar Code::Blocks ou Makefile.
 
@@ -25,14 +25,14 @@ Abra um terminal, navegue até a pasta "Sons_of_War_Codigo_Fonte", e execute o c
 ## macOS
 Para compilar e executar esse projeto no macOS, primeiro você precisa instalar o HOMEBREW, um gerenciador de pacotes para facilitar a instação de bibliotecas. O HOMEBREW pode ser instalado com o seguinte comando no terminal:
 
-#+begin_src shell :results output
+```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-#+end_src
+```
 
 Após a instalação do HOMEBREW, a biblioteca GLFW deve ser instalada. Isso pode ser feito pelo terminal com o comando:
-#+begin_src shell :results output
+```bash
 brew install glfw
-#+end_src
+```
 
 ### macOS com Makefile
 Abra um terminal, navegue até a pasta "Sons_of_War_Codigo_Fonte", e execute o comando "make -f Makefile.macOS" para compilar. Para executar o código compilado, execute o comando "make -f Makefile.macOS run".
