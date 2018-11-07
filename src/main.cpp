@@ -46,6 +46,9 @@
 #include "utils.h"
 #include "matrices.h"
 
+// Header de tempo
+#include<time.h>
+
 // Estrutura que representa um modelo geométrico carregado a partir de um
 // arquivo ".obj". Veja https://en.wikipedia.org/wiki/Wavefront_.obj_file .
 struct ObjModel
@@ -231,8 +234,20 @@ public:
     void look(float dtheta, float dphi);
 };
 
-//Câmeras
+class Scenary{
+public:
+    glm::vec3 land_size;
+
+
+    void build();
+    void draw();
+};
+
+// Câmeras
 Lookat_Camera lookat_camera;
+
+// Cenário
+Scenary scenary;
 
 int main(int argc, char* argv[])
 {
@@ -256,6 +271,9 @@ int main(int argc, char* argv[])
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     #endif
 
+    // Inicializamos a semente random
+    srand(time(0));
+
     // Pedimos para utilizar o perfil "core", isto é, utilizaremos somente as
     // funções modernas de OpenGL.
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -263,6 +281,7 @@ int main(int argc, char* argv[])
     // Criamos uma janela do sistema operacional, com 800 colunas e 600 linhas
     // de pixels, e com título "INF01047 ...".
     GLFWwindow* window;
+    glfwWindowHint(GLFW_SAMPLES, 4);    // Criando buffer de multisample para anti-aliasing
     window = glfwCreateWindow(800, 600, "INF01047 - Sons of War", NULL, NULL);
     if (!window)
     {
@@ -330,6 +349,9 @@ int main(int argc, char* argv[])
     // Iniciando câmera lookat
     lookat_camera.init();
 
+    // Construindo o cenário
+    scenary.build();
+
     // Ficamos em loop, renderizando, até que o usuário feche a janela
     while (!glfwWindowShouldClose(window))
     {
@@ -379,47 +401,16 @@ int main(int argc, char* argv[])
             projection = Matrix_Orthographic(l, r, b, t, lookat_camera.nearplane, lookat_camera.farplane);
         }
 
-        glm::mat4 model = Matrix_Identity(); // Transformação identidade de modelagem
-
         // Enviamos as matrizes "view" e "projection" para a placa de vídeo
         // (GPU). Veja o arquivo "shader_vertex.glsl", onde estas são
         // efetivamente aplicadas em todos os pontos.
         glUniformMatrix4fv(view_uniform       , 1 , GL_FALSE , glm::value_ptr(view));
         glUniformMatrix4fv(projection_uniform , 1 , GL_FALSE , glm::value_ptr(projection));
 
-        #define SPHERE 0
-        #define BUNNY  1
-        #define PLANE  2
-        #define CUBE   3
+        #define LAND   0
 
-        // Desenhamos o modelo da esfera
-        model = Matrix_Translate(-1.0f,0.0f,0.0f);
-        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-        glUniform1i(object_id_uniform, SPHERE);
-        DrawVirtualObject("sphere");
-
-        // Desenhamos o modelo do coelho
-        model = Matrix_Translate(1.0f,0.0f,0.0f)
-              * Matrix_Rotate_Z(g_AngleZ)
-              * Matrix_Rotate_Y(g_AngleY)
-              * Matrix_Rotate_X(g_AngleX);
-        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-        glUniform1i(object_id_uniform, BUNNY);
-        DrawVirtualObject("bunny");
-
-        //Desenhamos o modelo do plano
-        model = Matrix_Translate(0.0f,-1.0f,0.0f)
-              * Matrix_Scale(2.0,1.0f,2.0f);
-        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-        glUniform1i(object_id_uniform, PLANE);
-        DrawVirtualObject("plane");
-
-        //Desenhamos o modelo do cubo
-        model = Matrix_Translate(0.0f,0.0f,0.0f)
-              * Matrix_Scale(2.0,1.0f,2.0f);
-        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-        glUniform1i(object_id_uniform, CUBE);
-        DrawVirtualObject("cube");
+        //Desenhamos o cenário
+        scenary.draw();
 
         // Pegamos um vértice com coordenadas de modelo (0.5, 0.5, 0.5, 1) e o
         // passamos por todos os sistemas de coordenadas armazenados nas
@@ -1399,18 +1390,8 @@ void PrintObjModelInfo(ObjModel* model)
 }
 
 void BuildMeshes(int argc, char* argv[]){
-    ObjModel spheremodel("../../data/sphere.obj");
-    ComputeNormals(&spheremodel);
-    BuildTrianglesAndAddToVirtualScene(&spheremodel);
 
-    ObjModel bunnymodel("../../data/bunny.obj");
-    ComputeNormals(&bunnymodel);
-    BuildTrianglesAndAddToVirtualScene(&bunnymodel);
-
-    ObjModel planemodel("../../data/plane.obj");
-    ComputeNormals(&planemodel);
-    BuildTrianglesAndAddToVirtualScene(&planemodel);
-
+    // Carregando modelo do cubo - Terra, "montanhas"
     ObjModel cubemodel("../../data/cube.obj");
     ComputeNormals(&cubemodel);
     BuildTrianglesAndAddToVirtualScene(&cubemodel);
@@ -1536,4 +1517,36 @@ void Lookat_Camera::set_nearplane(float near_value)
 void Lookat_Camera::set_farplane(float far_value)
 {
     farplane = far_value;
+}
+
+// Scenary Functions
+void Scenary::build(){
+    // Definindo o tamanho do cenário
+    land_size.x = (rand() % 75 + 25) * 0.04; // gera um número entre 25 e 100, depois escala por 0.04 para gerar um float de 1 a 4
+    land_size.z = (rand() % 75 + 25) * 0.04;
+
+    if( land_size.x < 2)
+        land_size.y = land_size.x;
+    else if ( land_size.z < 2)
+        land_size.y = land_size.z;
+    else
+        land_size.y = 2;
+
+}
+
+void Scenary::draw(){
+    glm::mat4 model = Matrix_Identity(); // Transformação identidade de modelagem
+    //Desenhamos a terra
+    model = Matrix_Translate(0.0f, -land_size.y/2, 0.0f)
+          * Matrix_Scale(land_size.x, land_size.y, land_size.z);
+    glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+    glUniform1i(object_id_uniform, LAND);
+    DrawVirtualObject("Box");
+
+    // TODO Desenhamos os planaltos
+    model = Matrix_Translate(0.4f, +0.25f * 0.9f, -0.3f)
+          * Matrix_Scale(0.8f, 0.5f, 0.6f);
+    glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+    glUniform1i(object_id_uniform, LAND);
+    DrawVirtualObject("Box");
 }
