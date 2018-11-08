@@ -14,7 +14,7 @@ uniform mat4 projection;
 
 // Identificador que define qual objeto está sendo desenhado no momento
 #define LAND   0
-#define BUNNY  1
+#define WATER  1
 #define PLANE  2
 #define CUBE   3
 uniform int object_id;
@@ -57,17 +57,24 @@ void main()
 
     if ( object_id == LAND )
     {
-        Kd = vec3(0.3,0.7,0.2);
-        Ks = vec3(0.3,0.3,0.3);
-        Ka = vec3(0.0,0.0,0.0);
-        q = 20.0;
+        Kd = vec3(0.3,0.9,0.2);
+        Ks = vec3(0.1,0.1,0.1);
+        Ka = vec3(0.0,0.01,0.0);
+        q = 10.0;
+    }
+    else if ( object_id == WATER )
+    {
+        Kd = vec3(0.1,0.5,1.0);
+        Ks = vec3(0.85,0.9,1.0);
+        Ka = vec3(0.05,0.25,0.5);
+        q = 240.0;
     }
     else // Objeto desconhecido = preto
     {
         Kd = vec3(0.2,0.45,0.1);
         Ks = vec3(0.0,0.0,0.0);
         Ka = vec3(0.0,0.0,0.0);
-        q = 1.0;
+        q = 20.0;
     }
 
     // Atributos da Fonte de Iluminação SPOTLIGHT

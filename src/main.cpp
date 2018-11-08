@@ -76,6 +76,14 @@ struct ObjModel
     }
 };
 
+// Estrutura que representa uma elevação no mapa
+struct Plateau
+{
+    glm::vec3 position;     // Posição do centro do planalto
+    glm::vec3 scale;        // Escala das medidas do planalto
+    glm::vec2 bottom_limit; // Menores coordenadas de área pertencentes ao planalto
+    glm::vec2 top_limit;    // Maiores coordenadas de área pertencentes ao planalto
+};
 
 // Declaração de funções utilizadas para pilha de matrizes de modelagem.
 void PushMatrix(glm::mat4 M);
@@ -236,8 +244,8 @@ public:
 
 class Scenary{
 public:
-    glm::vec3 land_size;
-
+    glm::vec3 land_size;            // Escala das medidas da terra
+    std::vector<Plateau> plateaus;  // Lista de planaltos
 
     void build();
     void draw();
@@ -407,7 +415,8 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(view_uniform       , 1 , GL_FALSE , glm::value_ptr(view));
         glUniformMatrix4fv(projection_uniform , 1 , GL_FALSE , glm::value_ptr(projection));
 
-        #define LAND   0
+        #define LAND    0
+        #define WATER   1
 
         //Desenhamos o cenário
         scenary.draw();
@@ -1391,7 +1400,12 @@ void PrintObjModelInfo(ObjModel* model)
 
 void BuildMeshes(int argc, char* argv[]){
 
-    // Carregando modelo do cubo - Terra, "montanhas"
+    // Carregando modelo do cubo com arestas suaves - Terra, "montanhas"
+    ObjModel boxmodel("../../data/box.obj");
+    ComputeNormals(&boxmodel);
+    BuildTrianglesAndAddToVirtualScene(&boxmodel);
+
+    // Modelo de um cubo
     ObjModel cubemodel("../../data/cube.obj");
     ComputeNormals(&cubemodel);
     BuildTrianglesAndAddToVirtualScene(&cubemodel);
@@ -1524,6 +1538,10 @@ void Scenary::build(){
     // Definindo o tamanho do cenário
     land_size.x = (rand() % 75 + 25) * 0.04; // gera um número entre 25 e 100, depois escala por 0.04 para gerar um float de 1 a 4
     land_size.z = (rand() % 75 + 25) * 0.04;
+    if ( land_size.z > 1.77*land_size.x )
+        land_size.z = 1.77*land_size.x;
+    else if ( land_size.z <  0.5625*land_size.x )
+        land_size.z = 0.5625*land_size.x;
 
     if( land_size.x < 2)
         land_size.y = land_size.x;
@@ -1532,10 +1550,59 @@ void Scenary::build(){
     else
         land_size.y = 2;
 
+    // Definindo a quantidade de planaltos
+    int plateau_qtd = rand() % 4;   // Gera um número aleatório de planalto entre 0 e 4
+    // Laço que define os planaltos
+    for(int i = 0; i < plateau_qtd; i++){
+        Plateau plateau;
+
+        // Define o tamanho
+        if ( rand() % 2 == 0){
+            plateau.scale.x = (rand() % 15 + 10)*0.01*land_size.x;
+            plateau.scale.z = (rand() % 15 + 10)*0.01*land_size.z;
+        }
+        else{
+            plateau.scale.x = (rand() % 5 + 20)*0.01*land_size.x;
+            plateau.scale.z = (rand() % 15 + 10)*0.01*land_size.z;
+        }
+
+
+
+        plateau.scale.y = (rand() % 80 + 20)*0.01;
+        if ( plateau.scale.y > plateau.scale.x)
+            plateau.scale.y = plateau.scale.x;
+        if ( plateau.scale.y > plateau.scale.z)
+            plateau.scale.y = plateau.scale.z;
+
+        // Define a posição
+        // De acordo com o valor de i, o planalto é mandado para um determinado quadrante
+        if ( i == 0 ){ // Quadrante negativo
+            plateau.position.x = (plateau.scale.x - land_size.x) * 0.5 * (rand() % 80 + 20) * 0.01;
+            plateau.position.z = (plateau.scale.z - land_size.z) * 0.5 * (rand() % 80 + 20) * 0.01;
+        }
+        else if ( i == 1 ){
+            plateau.position.x = (land_size.x - plateau.scale.x) * 0.5 * (rand() % 80 + 20) * 0.01;
+            plateau.position.z = (plateau.scale.z - land_size.z) * 0.5 * (rand() % 80 + 20) * 0.01;
+        }
+        else if ( i == 2 ){
+            plateau.position.x = (plateau.scale.x - land_size.x) * 0.5 * (rand() % 80 + 20) * 0.01;
+            plateau.position.z = (land_size.z - plateau.scale.z) * 0.5 * (rand() % 80 + 20) * 0.01;
+        }
+        else{
+            plateau.position.x = (land_size.x - plateau.scale.x) * 0.5 * (rand() % 80 + 20) * 0.01;
+            plateau.position.z = (land_size.z - plateau.scale.z) * 0.5 * (rand() % 80 + 20) * 0.01;
+        }
+
+        plateau.position.y = plateau.scale.y * 0.5 * 0.9;
+
+        plateaus.push_back(plateau);
+    }
+
 }
 
 void Scenary::draw(){
     glm::mat4 model = Matrix_Identity(); // Transformação identidade de modelagem
+
     //Desenhamos a terra
     model = Matrix_Translate(0.0f, -land_size.y/2, 0.0f)
           * Matrix_Scale(land_size.x, land_size.y, land_size.z);
@@ -1543,10 +1610,24 @@ void Scenary::draw(){
     glUniform1i(object_id_uniform, LAND);
     DrawVirtualObject("Box");
 
-    // TODO Desenhamos os planaltos
-    model = Matrix_Translate(0.4f, +0.25f * 0.9f, -0.3f)
-          * Matrix_Scale(0.8f, 0.5f, 0.6f);
+    //Desenhamos a água
+    model = Matrix_Translate(0.0f, -land_size.y*1.1f, 0.0f)
+          * Matrix_Scale(land_size.x*2, land_size.y*2, land_size.z*2);
     glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-    glUniform1i(object_id_uniform, LAND);
-    DrawVirtualObject("Box");
+    glUniform1i(object_id_uniform, WATER);
+    DrawVirtualObject("cube");
+
+    // TODO Desenhamos os planaltos
+    for (int i = 0; i < plateaus.size(); i++)
+    {
+        model = Matrix_Translate(plateaus[i].position.x,
+                                 plateaus[i].position.y,
+                                 plateaus[i].position.z)
+              * Matrix_Scale(plateaus[i].scale.x,
+                             plateaus[i].scale.y,
+                             plateaus[i].scale.z);
+        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+        glUniform1i(object_id_uniform, LAND);
+        DrawVirtualObject("Box");
+    }
 }
