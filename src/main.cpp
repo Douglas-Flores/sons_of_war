@@ -129,6 +129,10 @@ void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 void CursorPosCallback(GLFWwindow* window, double xpos, double ypos);
 void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 
+// Funções de personagens
+void CreateCharacters();
+void DrawCharacters();
+
 // Definimos uma estrutura que armazenará dados necessários para renderizar
 // cada objeto da cena virtual.
 struct SceneObject
@@ -251,11 +255,91 @@ public:
     void draw();
 };
 
+class Character{
+public:
+    float max_hp;
+    float current_hp;
+    float max_movement;
+    float remaining_movement;
+    int max_actions;
+    int remaining_actions;
+    float range;
+    float damage;
+    int team;
+    int initiative;
+    glm::vec4 position;
+
+    void attack();
+    void init_attributes();
+    void update_hp(float delta){
+        current_hp = current_hp + delta;
+        if (current_hp > max_hp)
+            current_hp = max_hp;
+        else if (current_hp < 0)
+            current_hp = 0;
+    }
+    void end_turn() {
+        remaining_movement = max_movement;
+        remaining_actions = max_actions;
+    }
+    void set_team(int team_number) {
+        team = team_number;
+    }
+    void draw();
+
+};
+
+class Spearman: public Character{
+public:
+    void init_attributes(){
+        max_hp = 100;
+        current_hp = max_hp;
+        max_movement = 10;
+        remaining_movement = max_movement;
+        max_actions = 1;
+        remaining_actions = max_actions;
+        //initiative roll --
+    }
+    void attack();
+};
+
+class Guardian: public Character{
+public:
+    void init_attributes(){
+        max_hp = 200;
+        current_hp = max_hp;
+        max_movement = 5;
+        remaining_movement = max_movement;
+        max_actions = 1;
+        remaining_actions = max_actions;
+        //initiative roll --
+    }
+    void attack();
+};
+
+class Archer: public Character{
+public:
+    void init_attributes(){
+        max_hp = 70;
+        current_hp = max_hp;
+        max_movement = 15;
+        remaining_movement = max_movement;
+        max_actions = 1;
+        remaining_actions = max_actions;
+        //initiative roll --
+    }
+    void attack();
+};
+
 // Câmeras
 Lookat_Camera lookat_camera;
 
 // Cenário
 Scenary scenary;
+
+// Characters
+std::vector<Character> characters;
+int active_character;
 
 int main(int argc, char* argv[])
 {
@@ -415,11 +499,19 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(view_uniform       , 1 , GL_FALSE , glm::value_ptr(view));
         glUniformMatrix4fv(projection_uniform , 1 , GL_FALSE , glm::value_ptr(projection));
 
-        #define LAND    0
-        #define WATER   1
+        // Criamos os personagens
+        CreateCharacters();
 
-        //Desenhamos o cenário
+        #define LAND        0
+        #define WATER       1
+        #define CHAR_TEAM_1 2
+        #define CHAR_TEAM_2 3
+
+        // Desenhamos o cenário
         scenary.draw();
+
+        // Desenhamos os personagens
+        DrawCharacters();
 
         // Pegamos um vértice com coordenadas de modelo (0.5, 0.5, 0.5, 1) e o
         // passamos por todos os sistemas de coordenadas armazenados nas
@@ -1410,11 +1502,62 @@ void BuildMeshes(int argc, char* argv[]){
     ComputeNormals(&cubemodel);
     BuildTrianglesAndAddToVirtualScene(&cubemodel);
 
+    ObjModel bodymodel("../../data/body.obj");
+    ComputeNormals(&bodymodel);
+    BuildTrianglesAndAddToVirtualScene(&bodymodel);
+
     if ( argc > 1 )
     {
         ObjModel model(argv[1]);
         BuildTrianglesAndAddToVirtualScene(&model);
     }
+}
+
+void CreateCharacters() {
+
+    // Team 1
+    Spearman spearman_1;
+    spearman_1.init_attributes();
+    spearman_1.set_team(1);
+    characters.push_back(spearman_1);
+
+    Guardian guardian_1;
+    guardian_1.init_attributes();
+    guardian_1.set_team(1);
+    characters.push_back(guardian_1);
+
+    Archer archer_1;
+    archer_1.init_attributes();
+    archer_1.set_team(1);
+    characters.push_back(archer_1);
+
+    // Team 2
+    Spearman spearman_2;
+    spearman_2.init_attributes();
+    spearman_2.set_team(2);
+    characters.push_back(spearman_2);
+
+    Guardian guardian_2;
+    guardian_2.init_attributes();
+    guardian_2.set_team(2);
+    characters.push_back(guardian_2);
+
+    Archer archer_2;
+    archer_2.init_attributes();
+    archer_2.set_team(2);
+    characters.push_back(archer_2);
+}
+void Character::draw() {
+    glm::mat4 model = Matrix_Translate(0.0f, 0.0f, 0.0f)
+          * Matrix_Scale(0.03f, 0.03f, 0.03f);
+    glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+    glUniform1i(object_id_uniform, 2);
+    DrawVirtualObject("Plane_Plane.003");
+}
+
+void DrawCharacters() {
+    for (int i = 0; i < 1; i++)
+        characters[i].draw();
 }
 
 // set makeprg=cd\ ..\ &&\ make\ run\ >/dev/null

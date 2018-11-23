@@ -13,10 +13,10 @@ uniform mat4 view;
 uniform mat4 projection;
 
 // Identificador que define qual objeto está sendo desenhado no momento
-#define LAND   0
-#define WATER  1
-#define PLANE  2
-#define CUBE   3
+#define LAND        0
+#define WATER       1
+#define CHAR_TEAM_1 2
+#define CHAR_TEAM_2 3
 uniform int object_id;
 
 // O valor de saída ("out") de um Fragment Shader é a cor final do fragmento.
@@ -69,6 +69,13 @@ void main()
         Ka = vec3(0.05,0.25,0.5);
         q = 240.0;
     }
+    else if ( object_id == CHAR_TEAM_1)
+    {
+        Kd = vec3(0.9,0.1,0.1);
+        Ks = vec3(0.0,0.0,0.0);
+        Ka = vec3(0.9,0.1,0.1);
+        q = 0.0;
+    }
     else // Objeto desconhecido = preto
     {
         Kd = vec3(0.2,0.45,0.1);
@@ -81,10 +88,10 @@ void main()
     vec3 I = vec3(1.0,1.0,1.0); // Espectro da fonte de iluminação
 
     // Espectro da luz ambiente
-    vec3 Ia = vec3(0.2,0.2,0.2); // PREENCHA AQUI o espectro da luz ambiente
+    vec3 Ia = vec3(0.2,0.2,0.2);
 
     // Termo difuso utilizando a lei dos cossenos de Lambert
-    vec3 lambert_diffuse_term = Kd*I*max(0,dot(n,l)); // PREENCHA AQUI o termo difuso de Lambert
+    vec3 lambert_diffuse_term = Kd*I*max(0,dot(n,l));
 
     // Termo ambiente
     vec3 ambient_term = Ka*Ia;
