@@ -16,7 +16,9 @@ uniform mat4 projection;
 // para cada fragmento, os quais serão recebidos como entrada pelo Fragment
 // Shader. Veja o arquivo "shader_fragment.glsl".
 out vec4 position_world;
+out vec4 position_model;
 out vec4 normal;
+out vec2 texcoords;
 
 void main()
 {
@@ -55,5 +57,7 @@ void main()
     // Veja slide 107 do documento "Aula_07_Transformacoes_Geometricas_3D.pdf".
     normal = inverse(transpose(model)) * normal_coefficients;
     normal.w = 0.0;
+
+    texcoords = texture_coefficients;
 }
 
