@@ -439,7 +439,7 @@ int main(int argc, char* argv[])
 
     // Carregamos duas imagens para serem utilizadas como textura
     LoadTextureImage("../../data/grass_dirt_texture.bmp");      // TextureImage0
-    LoadTextureImage("../../data/water_texture.bmp"); // TextureImage1
+    LoadTextureImage("../../data/water_texture.jpg"); // TextureImage1
 
     // Construímos a representação de objetos geométricos através de malhas de triângulos
     BuildMeshes(argc, argv);
