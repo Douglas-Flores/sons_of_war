@@ -312,6 +312,11 @@ bool moveBackwards = false;
 bool moveLeft = false;
 bool moveRight = false;
 
+bool panLookatRight = false;
+bool panLookatLeft = false;
+bool panLookatUp = false;
+bool panLookatDown = false;
+
 // Número de texturas carregadas pela função LoadTextureImage() - LAB4
 GLuint g_NumLoadedTextures = 0;
 
@@ -512,7 +517,22 @@ int main(int argc, char* argv[])
         // Desenhamos os personagens
         DrawCharacters();
 
+        // Movimento da camera Look at
+        glm::vec4 direction = glm::vec4(1.0f, 0.0f, 0.0f, 0.0f);
+        glm::vec4 foward_vec = glm::vec4(lookat_camera.view.x, 0.0f, lookat_camera.view.z, 0.0f);
+        glm::vec4 right_vec = Matrix_Rotate_Y(-3.1415/2)*foward_vec;
 
+        if ( panLookatRight )
+            lookat_camera.move(right_vec);
+
+        if ( panLookatLeft )
+            lookat_camera.move(-right_vec);
+
+        if ( panLookatUp )
+            lookat_camera.move(foward_vec);
+
+        if ( panLookatDown )
+            lookat_camera.move(-foward_vec);
 
         // Pegamos um vértice com coordenadas de modelo (0.5, 0.5, 0.5, 1) e o
         // passamos por todos os sistemas de coordenadas armazenados nas
@@ -1108,6 +1128,30 @@ void CursorPosCallback(GLFWwindow* window, double xpos, double ypos)
     // parâmetros que definem a posição da câmera dentro da cena virtual.
     // Assim, temos que o usuário consegue controlar a câmera.
 
+    if ( cam_mode == THIRD_PERSON )
+    {
+        int height, width;
+        glfwGetWindowSize(window, &width, &height);
+        if ( xpos > 0.98*width )
+            panLookatRight = true;
+        else
+            panLookatRight = false;
+
+        if ( xpos < 0.02*width )
+            panLookatLeft = true;
+        else
+            panLookatLeft = false;
+
+        if ( ypos > 0.98*height )
+            panLookatDown = true;
+        else
+            panLookatDown = false;
+
+        if ( ypos < 0.02*height )
+            panLookatUp = true;
+        else
+            panLookatUp = false;
+    }
     if (g_LeftMouseButtonPressed)
     {
         // Deslocamento do cursor do mouse em x e y de coordenadas de tela!
@@ -1577,8 +1621,8 @@ void CreateCharacters(glm::vec3 land_size) {
     Character archer_1;
     archer_1.init_attributes(ARCHER);
     archer_1.set_team(1);
-    archer_1.position.x = -land_size.x / 4;
-    archer_1.position.z = -land_size.z / 4;
+    archer_1.position = glm::vec4(-land_size.x / 4, 0.0f, -land_size.z / 4, 1.0f);
+    archer_1.camera.init(archer_1.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
     characters.push_back(archer_1);
 
     // Team 2
@@ -1592,21 +1636,21 @@ void CreateCharacters(glm::vec3 land_size) {
     Character guardian_2;
     guardian_2.init_attributes(GUARDIAN);
     guardian_2.set_team(2);
-    guardian_2.position.x = 0.0f;
-    guardian_2.position.z = land_size.z / 4;
+    guardian_2.position = glm::vec4(0.0f, 0.0f, land_size.z / 4, 1.0f);
+    guardian_2.camera.init(guardian_2.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
     characters.push_back(guardian_2);
 
     Character archer_2;
     archer_2.init_attributes(ARCHER);
     archer_2.set_team(2);
-    archer_2.position.x = -land_size.x / 4;
-    archer_2.position.z = land_size.z / 4;
+    archer_2.position = glm::vec4(-land_size.x / 4, 0.0f, land_size.z / 4, 1.0f);
+    archer_2.camera.init(archer_2.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
     characters.push_back(archer_2);
 }
 void Character::draw() {
     glm::mat4 model = Matrix_Translate(position.x, position.y, position.z)
           * Matrix_Scale(0.03f, 0.03f, 0.03f)
-          * Matrix_Rotate_Y(acos(dotproduct(camera.view, glm::vec4(0.0f, 0.0f, 1.0f, 0.0f))));
+          * Matrix_Rotate_Y(-acos(dotproduct(camera.view, glm::vec4(0.0f, 0.0f, 1.0f, 0.0f))));
     glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
     glUniform1i(object_id_uniform, team + 1);
     DrawVirtualObject("Plane_Plane.003");
@@ -1691,9 +1735,10 @@ void Lookat_Camera::init(){
 
 void Lookat_Camera::move(glm::vec4 direction)
 {
-    position.x += speed*direction.x;
-    position.y += speed*direction.y;
-    position.z += speed*direction.z;
+    lookat.x += speed*direction.x;
+    lookat.z += speed*direction.z;
+
+    update_camera();
 }
 
 void Lookat_Camera::look(float dtheta, float dphi)
