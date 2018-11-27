@@ -95,8 +95,8 @@ void main()
         float minz = bbox_min.z;
         float maxz = bbox_max.z;
 
-        U = (position_world.x - minx)/(maxx - minx);
-        V = (position_world.y - miny)/(maxy - miny);
+        V = (position_world.x - minx)/(maxx - minx);
+        U = (position_world.y - miny)/(maxy - miny);
     }
     else if ( object_id == CHAR_TEAM_1)
     {
