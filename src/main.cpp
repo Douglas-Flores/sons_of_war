@@ -136,7 +136,7 @@ void CursorPosCallback(GLFWwindow* window, double xpos, double ypos);
 void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 
 // Funções de personagens
-void CreateCharacters();
+void CreateCharacters(glm::vec3 land_size);
 void DrawCharacters();
 
 // Funções de textura.
@@ -253,7 +253,7 @@ public:
     // Parâmetros
     float speed;
 
-    void init();
+    void init(glm::vec4 pos, glm::vec4 origin);
     void move(glm::vec4 direction);
     void rotate(glm::vec4 axis, float angle);
     void look(float dtheta, float dphi);
@@ -268,6 +268,9 @@ public:
     void draw();
 };
 
+#define SPEARMAN    1
+#define GUARDIAN    2
+#define ARCHER      3
 class Character{
 public:
     float max_hp;
@@ -281,11 +284,13 @@ public:
     int team;
     int initiative;
     glm::vec4 position;
+    int role;
+    Free_Camera camera;
 
     void attack();
-    void init_attributes();
-    void update_hp(float delta){
-        current_hp = current_hp + delta;
+    void init_attributes(int type);
+    void take_damage(float delta){
+        current_hp = current_hp - delta;
         if (current_hp > max_hp)
             current_hp = max_hp;
         else if (current_hp < 0)
@@ -302,56 +307,21 @@ public:
 
 };
 
-class Spearman: public Character{
-public:
-    void init_attributes(){
-        max_hp = 100;
-        current_hp = max_hp;
-        max_movement = 10;
-        remaining_movement = max_movement;
-        max_actions = 1;
-        remaining_actions = max_actions;
-        //initiative roll --
-    }
-    void attack();
-};
-
-class Guardian: public Character{
-public:
-    void init_attributes(){
-        max_hp = 200;
-        current_hp = max_hp;
-        max_movement = 5;
-        remaining_movement = max_movement;
-        max_actions = 1;
-        remaining_actions = max_actions;
-        //initiative roll --
-    }
-    void attack();
-};
-
-class Archer: public Character{
-public:
-    void init_attributes(){
-        max_hp = 70;
-        current_hp = max_hp;
-        max_movement = 15;
-        remaining_movement = max_movement;
-        max_actions = 1;
-        remaining_actions = max_actions;
-        //initiative roll --
-    }
-    void attack();
-};
-
+bool moveFoward = false;
+bool moveBackwards = false;
+bool moveLeft = false;
+bool moveRight = false;
 
 // Número de texturas carregadas pela função LoadTextureImage() - LAB4
-    GLuint g_NumLoadedTextures = 0;
-
-
+GLuint g_NumLoadedTextures = 0;
 
 // Câmeras
 Lookat_Camera lookat_camera;
+
+#define FIRST_PERSON    0
+#define THIRD_PERSON    1
+#define FREE_CAM        2
+int cam_mode;
 
 // Cenário
 Scenary scenary;
@@ -467,6 +437,15 @@ int main(int argc, char* argv[])
     // Construindo o cenário
     scenary.build();
 
+    // Criamos os personagens
+    CreateCharacters(scenary.land_size);
+
+    // Iniciando com 1º personagem
+    active_character = 0;
+
+    // Câmera começa em 3º pessoa
+    cam_mode = 1;
+
     // Ficamos em loop, renderizando, até que o usuário feche a janela
     while (!glfwWindowShouldClose(window))
     {
@@ -522,9 +501,6 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(view_uniform       , 1 , GL_FALSE , glm::value_ptr(view));
         glUniformMatrix4fv(projection_uniform , 1 , GL_FALSE , glm::value_ptr(projection));
 
-        // Criamos os personagens
-        CreateCharacters();
-
         #define LAND        0
         #define WATER       1
         #define CHAR_TEAM_1 2
@@ -535,6 +511,8 @@ int main(int argc, char* argv[])
 
         // Desenhamos os personagens
         DrawCharacters();
+
+
 
         // Pegamos um vértice com coordenadas de modelo (0.5, 0.5, 0.5, 1) e o
         // passamos por todos os sistemas de coordenadas armazenados nas
@@ -1236,9 +1214,18 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
         g_AngleZ += (mod & GLFW_MOD_SHIFT) ? -delta : delta;
     }
 
-    // Se o usuário apertar a tecla espaço, resetamos os ângulos de Euler para zero.
+    // Se o usuário apertar a tecla espaço, pulamos o turno.
     if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
     {
+        characters[active_character].end_turn();
+        active_character++;
+        if (active_character > characters.size() - 1)
+            active_character = 0;
+        printf("personagem atual: %d \n", active_character);
+
+        lookat_camera.lookat = characters[active_character].position;
+    }
+    /*{
         g_AngleX = 0.0f;
         g_AngleY = 0.0f;
         g_AngleZ = 0.0f;
@@ -1246,7 +1233,7 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
         g_ForearmAngleZ = 0.0f;
         g_TorsoPositionX = 0.0f;
         g_TorsoPositionY = 0.0f;
-    }
+    }*/
 
     // Se o usuário apertar a tecla P, utilizamos projeção perspectiva.
     if (key == GLFW_KEY_P && action == GLFW_PRESS)
@@ -1569,50 +1556,64 @@ void BuildMeshes(int argc, char* argv[]){
     }
 }
 
-void CreateCharacters() {
+void CreateCharacters(glm::vec3 land_size) {
 
+    glm::vec4 origin = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
     // Team 1
-    Spearman spearman_1;
-    spearman_1.init_attributes();
+    Character spearman_1;
+    spearman_1.init_attributes(SPEARMAN);
     spearman_1.set_team(1);
+    spearman_1.position = glm::vec4(land_size.x / 4, 0.0f, -land_size.z / 4, 1.0f);
+    spearman_1.camera.init(spearman_1.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
     characters.push_back(spearman_1);
 
-    Guardian guardian_1;
-    guardian_1.init_attributes();
+    Character guardian_1;
+    guardian_1.init_attributes(GUARDIAN);
     guardian_1.set_team(1);
+    guardian_1.position = glm::vec4(0.0f, 0.0f, -land_size.z / 4, 1.0f);
+    guardian_1.camera.init(guardian_1.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
     characters.push_back(guardian_1);
 
-    Archer archer_1;
-    archer_1.init_attributes();
+    Character archer_1;
+    archer_1.init_attributes(ARCHER);
     archer_1.set_team(1);
+    archer_1.position.x = -land_size.x / 4;
+    archer_1.position.z = -land_size.z / 4;
     characters.push_back(archer_1);
 
     // Team 2
-    Spearman spearman_2;
-    spearman_2.init_attributes();
+    Character spearman_2;
+    spearman_2.init_attributes(SPEARMAN);
     spearman_2.set_team(2);
+    spearman_2.position = glm::vec4(land_size.x / 4, 0.0f, land_size.z / 4, 1.0f);
+    spearman_2.camera.init(spearman_2.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
     characters.push_back(spearman_2);
 
-    Guardian guardian_2;
-    guardian_2.init_attributes();
+    Character guardian_2;
+    guardian_2.init_attributes(GUARDIAN);
     guardian_2.set_team(2);
+    guardian_2.position.x = 0.0f;
+    guardian_2.position.z = land_size.z / 4;
     characters.push_back(guardian_2);
 
-    Archer archer_2;
-    archer_2.init_attributes();
+    Character archer_2;
+    archer_2.init_attributes(ARCHER);
     archer_2.set_team(2);
+    archer_2.position.x = -land_size.x / 4;
+    archer_2.position.z = land_size.z / 4;
     characters.push_back(archer_2);
 }
 void Character::draw() {
-    glm::mat4 model = Matrix_Translate(0.0f, 0.0f, 0.0f)
-          * Matrix_Scale(0.03f, 0.03f, 0.03f);
+    glm::mat4 model = Matrix_Translate(position.x, position.y, position.z)
+          * Matrix_Scale(0.03f, 0.03f, 0.03f)
+          * Matrix_Rotate_Y(acos(dotproduct(camera.view, glm::vec4(0.0f, 0.0f, 1.0f, 0.0f))));
     glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-    glUniform1i(object_id_uniform, 2);
+    glUniform1i(object_id_uniform, team + 1);
     DrawVirtualObject("Plane_Plane.003");
 }
 
 void DrawCharacters() {
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < characters.size(); i++)
         characters[i].draw();
 }
 
@@ -1621,10 +1622,10 @@ void DrawCharacters() {
 
 // Funções de Classes
 // Camera Livre
-void Free_Camera::init()
+void Free_Camera::init(glm::vec4 pos, glm::vec4 origin)
 {
-    position = glm::vec4(0.0f, 2.0f, 2.0f, 1.0f);
-    view = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f) - position;
+    position = pos;//glm::vec4(0.0f, 2.0f, 2.0f, 1.0f);
+    view = origin - position;
     view = view / norm(view);
     up = glm::vec4(0.0f, 1.0f, 0.0f, 0.0f);
     right = crossproduct(view, up);
@@ -1716,9 +1717,9 @@ void Lookat_Camera::update_camera()
 {
     float r = distance;
     // Computamos a posição da câmera utilizando coordenadas esféricas.
-    position.x = r*cos(phi)*sin(theta);
-    position.y = r*sin(phi);
-    position.z = r*cos(phi)*cos(theta);
+    position.x = r*cos(phi)*sin(theta) + lookat.x;
+    position.y = r*sin(phi) + lookat.y;
+    position.z = r*cos(phi)*cos(theta) + lookat.z;
 
     view = lookat - position;
 }
@@ -1764,8 +1765,6 @@ void Scenary::build(){
             plateau.scale.x = (rand() % 5 + 20)*0.01*land_size.x;
             plateau.scale.z = (rand() % 15 + 10)*0.01*land_size.z;
         }
-
-
 
         plateau.scale.y = (rand() % 80 + 20)*0.01;
         if ( plateau.scale.y > plateau.scale.x)
@@ -1831,6 +1830,35 @@ void Scenary::draw(){
     }
 }
 
+void Character::init_attributes(int type){
+    role = type;
+    switch(type){
+        case SPEARMAN:
+            max_hp = 100;
+            current_hp = max_hp;
+            max_movement = 10;
+            remaining_movement = max_movement;
+            max_actions = 1;
+            remaining_actions = max_actions;
+            break;
+        case GUARDIAN:
+            max_hp = 200;
+            current_hp = max_hp;
+            max_movement = 5;
+            remaining_movement = max_movement;
+            max_actions = 1;
+            remaining_actions = max_actions;
+            break;
+        case ARCHER:
+            max_hp = 70;
+            current_hp = max_hp;
+            max_movement = 15;
+            remaining_movement = max_movement;
+            max_actions = 1;
+            remaining_actions = max_actions;
+            break;
+    }
+}
 
 // Função que carrega uma imagem para ser utilizada como textura
 void LoadTextureImage(const char* filename)

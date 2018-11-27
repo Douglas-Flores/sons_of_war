@@ -418,7 +418,7 @@
 	<fstream>
 	<sstream>
 
-1542984233 source:c:\users\douglas\documents\repositórios\sons_of_war\src\main.cpp
+1543348978 source:c:\users\douglas\documents\repositórios\sons_of_war\src\main.cpp
 	<cmath>
 	<cstdio>
 	<cstdlib>
@@ -437,6 +437,7 @@
 	<glm/vec4.hpp>
 	<glm/gtc/type_ptr.hpp>
 	<tiny_obj_loader.h>
+	<stb_image.h>
 	"utils.h"
 	"matrices.h"
 	<time.h>
@@ -1057,6 +1058,22 @@
 	"tiny_obj_loader.h"
 
 1541506884 c:\users\vinic\desktop\fcg\tf\sons_of_war\include\stb_image.h
+	"stb_image.h"
+	<stdio.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<stdint.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
+
+1543342285 c:\users\douglas\documents\repositórios\sons_of_war\include\stb_image.h
 	"stb_image.h"
 	<stdio.h>
 	<stdarg.h>

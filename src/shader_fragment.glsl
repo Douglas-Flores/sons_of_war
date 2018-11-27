@@ -72,7 +72,7 @@ void main()
 
     if ( object_id == LAND )
     {
-        float minx = bbox_min.x;
+        /*float minx = bbox_min.x;
         float maxx = bbox_max.x;
 
         float miny = bbox_min.y;
@@ -82,7 +82,11 @@ void main()
         float maxz = bbox_max.z;
 
         U = (position_world.x - minx)/(maxx - minx);
-        V = (position_world.y - miny)/(maxy - miny);
+        V = (position_world.y - miny)/(maxy - miny);*/
+        Kd = vec3(0.1,0.9,0.1);
+        Ks = vec3(0.0,0.0,0.0);
+        Ka = vec3(0.1,0.5,0.3);
+        q = 0.0;
     }
     else if ( object_id == WATER )
     {
@@ -95,14 +99,21 @@ void main()
         float minz = bbox_min.z;
         float maxz = bbox_max.z;
 
-        V = (position_world.x - minx)/(maxx - minx);
-        U = (position_world.y - miny)/(maxy - miny);
+        U = (position_world.x - minx)/(maxx - minx);
+        V = (position_world.z - minz)/(maxz - minz);
     }
     else if ( object_id == CHAR_TEAM_1)
     {
         Kd = vec3(0.9,0.1,0.1);
         Ks = vec3(0.0,0.0,0.0);
         Ka = vec3(0.9,0.1,0.1);
+        q = 0.0;
+    }
+    else if ( object_id == CHAR_TEAM_2)
+    {
+        Kd = vec3(0.2,0.2,1.0);
+        Ks = vec3(0.0,0.0,0.0);
+        Ka = vec3(0.2,0.2,1.0);
         q = 0.0;
     }
     else // Objeto desconhecido = preto
@@ -119,7 +130,7 @@ void main()
     vec3 I = vec3(1.0,1.0,1.0); // Espectro da fonte de iluminação
 
     // Espectro da luz ambiente
-    vec3 Ia = vec3(0.2,0.2,0.2);
+    vec3 Ia = vec3(0.1,0.1,0.1);
 
     // Termo difuso utilizando a lei dos cossenos de Lambert
     vec3 lambert_diffuse_term = Kd*I*max(0,dot(n,l));
@@ -148,12 +159,12 @@ void main()
     // Veja https://en.wikipedia.org/w/index.php?title=Gamma_correction&oldid=751281772#Windows.2C_Mac.2C_sRGB_and_TV.2Fvideo_standard_gammas
     color = pow(color, vec3(1.0,1.0,1.0)/2.2);
 
-    if(object_id == LAND)
+    /*if(object_id == LAND)
     {
          color = pow(color0, vec3(1.0,1.0,1.0)/2.2);;
     }
 
-       else if(object_id == WATER)
+    else */if(object_id == WATER)
     {
          color = pow(color1, vec3(1.0,1.0,1.0)/4.2);
     }
