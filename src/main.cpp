@@ -1128,10 +1128,12 @@ void CursorPosCallback(GLFWwindow* window, double xpos, double ypos)
     // parâmetros que definem a posição da câmera dentro da cena virtual.
     // Assim, temos que o usuário consegue controlar a câmera.
 
-    if ( cam_mode == THIRD_PERSON )
-    {
-        int height, width;
-        glfwGetWindowSize(window, &width, &height);
+    // Pegando tamanho da tela
+    int height, width;
+    glfwGetWindowSize(window, &width, &height);
+
+    switch(cam_mode){
+    case THIRD_PERSON:
         if ( xpos > 0.98*width )
             panLookatRight = true;
         else
@@ -1152,6 +1154,7 @@ void CursorPosCallback(GLFWwindow* window, double xpos, double ypos)
         else
             panLookatUp = false;
     }
+
     if (g_LeftMouseButtonPressed)
     {
         // Deslocamento do cursor do mouse em x e y de coordenadas de tela!
@@ -1268,6 +1271,7 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
         printf("personagem atual: %d \n", active_character);
 
         lookat_camera.lookat = characters[active_character].position;
+        lookat_camera.update_camera();
     }
     /*{
         g_AngleX = 0.0f;
@@ -1304,6 +1308,19 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
         fprintf(stdout,"Shaders recarregados!\n");
         fflush(stdout);
     }
+
+    // Tecla F = alterna entre primeira e terceira pessoa
+    if (key == GLFW_KEY_F && action == GLFW_PRESS)
+    {
+        if (cam_mode == THIRD_PERSON)
+            cam_mode = FIRST_PERSON;
+        else
+            cam_mode = THIRD_PERSON;
+    }
+
+    // Tecla L = ativa câmera livre
+    if (key == GLFW_KEY_F && action == GLFW_PRESS)
+        cam_mode = FREE_CAM;
 }
 
 // Definimos o callback para impressão de erros da GLFW no terminal
@@ -1608,21 +1625,21 @@ void CreateCharacters(glm::vec3 land_size) {
     spearman_1.init_attributes(SPEARMAN);
     spearman_1.set_team(1);
     spearman_1.position = glm::vec4(land_size.x / 4, 0.0f, -land_size.z / 4, 1.0f);
-    spearman_1.camera.init(spearman_1.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    spearman_1.camera.init(spearman_1.position, glm::vec4(spearman_1.position.x, spearman_1.position.y, -spearman_1.position.z, 1.0f));
     characters.push_back(spearman_1);
 
     Character guardian_1;
     guardian_1.init_attributes(GUARDIAN);
     guardian_1.set_team(1);
     guardian_1.position = glm::vec4(0.0f, 0.0f, -land_size.z / 4, 1.0f);
-    guardian_1.camera.init(guardian_1.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    guardian_1.camera.init(guardian_1.position, glm::vec4(guardian_1.position.x, guardian_1.position.y, -guardian_1.position.z, 1.0f));
     characters.push_back(guardian_1);
 
     Character archer_1;
     archer_1.init_attributes(ARCHER);
     archer_1.set_team(1);
     archer_1.position = glm::vec4(-land_size.x / 4, 0.0f, -land_size.z / 4, 1.0f);
-    archer_1.camera.init(archer_1.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    archer_1.camera.init(archer_1.position, glm::vec4(archer_1.position.x, archer_1.position.y, -archer_1.position.z, 1.0f));
     characters.push_back(archer_1);
 
     // Team 2
@@ -1630,21 +1647,21 @@ void CreateCharacters(glm::vec3 land_size) {
     spearman_2.init_attributes(SPEARMAN);
     spearman_2.set_team(2);
     spearman_2.position = glm::vec4(land_size.x / 4, 0.0f, land_size.z / 4, 1.0f);
-    spearman_2.camera.init(spearman_2.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    spearman_2.camera.init(spearman_2.position, glm::vec4(spearman_2.position.x, spearman_2.position.y, -spearman_2.position.z, 1.0f));
     characters.push_back(spearman_2);
 
     Character guardian_2;
     guardian_2.init_attributes(GUARDIAN);
     guardian_2.set_team(2);
     guardian_2.position = glm::vec4(0.0f, 0.0f, land_size.z / 4, 1.0f);
-    guardian_2.camera.init(guardian_2.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    guardian_2.camera.init(guardian_2.position, glm::vec4(guardian_2.position.x, guardian_2.position.y, -guardian_2.position.z, 1.0f));
     characters.push_back(guardian_2);
 
     Character archer_2;
     archer_2.init_attributes(ARCHER);
     archer_2.set_team(2);
     archer_2.position = glm::vec4(-land_size.x / 4, 0.0f, land_size.z / 4, 1.0f);
-    archer_2.camera.init(archer_2.position, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    archer_2.camera.init(archer_2.position, glm::vec4(archer_2.position.x, archer_2.position.y, -archer_2.position.z, 1.0f));
     characters.push_back(archer_2);
 }
 void Character::draw() {
@@ -1744,7 +1761,7 @@ void Lookat_Camera::move(glm::vec4 direction)
 void Lookat_Camera::look(float dtheta, float dphi)
 {
     float phimax = 3.141592f/2;
-    float phimin = -phimax;
+    float phimin = 0;
 
     theta -= 0.01f*dtheta;
     phi += 0.01f*dphi;
