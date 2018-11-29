@@ -144,6 +144,8 @@ void LoadTextureImage(const char* filename);
 GLint bbox_min_uniform;
 GLint bbox_max_uniform;
 
+void PassTurn();
+
 // Definimos uma estrutura que armazenará dados necessários para renderizar
 // cada objeto da cena virtual.
 struct SceneObject
@@ -257,7 +259,9 @@ public:
     float farplane  = -10.0f;
 
     void init(glm::vec4 pos, glm::vec4 origin);
+    void init_char(glm::vec4 pos, glm::vec4 origin);
     void move(glm::vec4 direction);
+    void move2D(glm::vec4 direction);
     void rotate(glm::vec4 axis, float angle);
     void look(float dtheta, float dphi);
 };
@@ -289,6 +293,7 @@ public:
     glm::vec4 position;
     int role;
     Free_Camera camera;
+    glm::vec4 facing_vector;
 
     void attack();
     void init_attributes(int type);
@@ -307,6 +312,8 @@ public:
         team = team_number;
     }
     void draw();
+    void move();
+    void moveFP(glm::vec4 direction);
 
 };
 
@@ -314,6 +321,8 @@ bool moveFoward = false;
 bool moveBackwards = false;
 bool moveLeft = false;
 bool moveRight = false;
+bool rotateLeft = false;
+bool rotateRight = false;
 
 bool panLookatRight = false;
 bool panLookatLeft = false;
@@ -572,9 +581,37 @@ int main(int argc, char* argv[])
 
             if ( panLookatDown )
                 lookat_camera.move(-foward_vec);
+
+            if ( rotateLeft ){
+                characters[active_character].facing_vector = characters[active_character].facing_vector*Matrix_Rotate_Y(-0.1);
+                characters[active_character].camera.view = normalize(characters[active_character].facing_vector);
+            }
+
+            if ( rotateRight ){
+                characters[active_character].facing_vector = characters[active_character].facing_vector*Matrix_Rotate_Y(0.1);
+                characters[active_character].camera.view = normalize(characters[active_character].facing_vector);
+            }
+
+            if ( moveFoward )
+                characters[active_character].move();
+
             break;
         case FIRST_PERSON:
-            printf("to do\n");
+            if (moveFoward){
+                characters[active_character].moveFP(characters[active_character].camera.view);
+            }
+
+            if (moveBackwards){
+                characters[active_character].moveFP(-characters[active_character].camera.view);
+            }
+
+            if (moveLeft){
+                characters[active_character].moveFP(-characters[active_character].camera.right);
+            }
+
+            if (moveRight){
+                characters[active_character].moveFP(characters[active_character].camera.right);
+            }
             break;
         case FREE_CAM:
             if (moveFoward)
@@ -590,6 +627,10 @@ int main(int argc, char* argv[])
                 free_camera.move(free_camera.right);
             break;
         }
+
+        // Testa o final do turno
+        if (characters[active_character].remaining_movement <= 0 && characters[active_character].remaining_actions <= 0)
+            PassTurn();
 
         // Pegamos um vértice com coordenadas de modelo (0.5, 0.5, 0.5, 1) e o
         // passamos por todos os sistemas de coordenadas armazenados nas
@@ -1217,6 +1258,7 @@ void CursorPosCallback(GLFWwindow* window, double xpos, double ypos)
         // Deslocamento do cursor do mouse em x e y de coordenadas de tela!
         float dx = xpos - g_LastCursorPosX;
         float dy = ypos - g_LastCursorPosY;
+        glm::vec4 view2D;
 
         switch(cam_mode){
         case THIRD_PERSON:
@@ -1224,6 +1266,9 @@ void CursorPosCallback(GLFWwindow* window, double xpos, double ypos)
             break;
         case FIRST_PERSON:
             characters[active_character].camera.look(dx, dy);
+            view2D = glm::vec4(characters[active_character].camera.view.x, 0.0f, characters[active_character].camera.view.z, 0.0f);
+            view2D = normalize(view2D);
+            characters[active_character].facing_vector = view2D;
             break;
         case FREE_CAM:
             free_camera.look(dx, dy);
@@ -1330,16 +1375,7 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
 
     // Se o usuário apertar a tecla espaço, pulamos o turno.
     if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-    {
-        characters[active_character].end_turn();
-        active_character++;
-        if (active_character > characters.size() - 1)
-            active_character = 0;
-        printf("personagem atual: %d \n", active_character);
-
-        lookat_camera.lookat = characters[active_character].position;
-        lookat_camera.update_camera();
-    }
+        PassTurn();
     /*{
         g_AngleX = 0.0f;
         g_AngleY = 0.0f;
@@ -1396,9 +1432,15 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
         moveFoward = false;
 
     if (key == GLFW_KEY_A && action == GLFW_PRESS)
-        moveLeft = true;
+        if (cam_mode == THIRD_PERSON)
+            rotateLeft = true;
+        else
+            moveLeft = true;
     if (key == GLFW_KEY_A && action == GLFW_RELEASE)
-        moveLeft = false;
+        if (cam_mode == THIRD_PERSON)
+            rotateLeft = false;
+        else
+            moveLeft = false;
 
     if (key == GLFW_KEY_S && action == GLFW_PRESS)
         moveBackwards = true;
@@ -1406,9 +1448,15 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
         moveBackwards = false;
 
     if (key == GLFW_KEY_D && action == GLFW_PRESS)
-        moveRight = true;
+        if (cam_mode == THIRD_PERSON)
+            rotateRight = true;
+        else
+            moveRight = true;
     if (key == GLFW_KEY_D && action == GLFW_RELEASE)
-        moveRight = false;
+        if (cam_mode == THIRD_PERSON)
+            rotateRight = false;
+        else
+            moveRight = false;
 }
 
 // Definimos o callback para impressão de erros da GLFW no terminal
@@ -1713,21 +1761,24 @@ void CreateCharacters(glm::vec3 land_size) {
     spearman_1.init_attributes(SPEARMAN);
     spearman_1.set_team(1);
     spearman_1.position = glm::vec4(land_size.x / 4, 0.0f, -land_size.z / 4, 1.0f);
-    spearman_1.camera.init(spearman_1.position, glm::vec4(spearman_1.position.x, spearman_1.position.y, -spearman_1.position.z, 1.0f));
+    spearman_1.camera.init_char(spearman_1.position, glm::vec4(spearman_1.position.x, spearman_1.position.y, -spearman_1.position.z, 1.0f));
+    spearman_1.facing_vector = spearman_1.camera.view;
     characters.push_back(spearman_1);
 
     Character guardian_1;
     guardian_1.init_attributes(GUARDIAN);
     guardian_1.set_team(1);
     guardian_1.position = glm::vec4(0.0f, 0.0f, -land_size.z / 4, 1.0f);
-    guardian_1.camera.init(guardian_1.position, glm::vec4(guardian_1.position.x, guardian_1.position.y, -guardian_1.position.z, 1.0f));
+    guardian_1.camera.init_char(guardian_1.position, glm::vec4(guardian_1.position.x, guardian_1.position.y, -guardian_1.position.z, 1.0f));
+    guardian_1.facing_vector = guardian_1.camera.view;
     characters.push_back(guardian_1);
 
     Character archer_1;
     archer_1.init_attributes(ARCHER);
     archer_1.set_team(1);
     archer_1.position = glm::vec4(-land_size.x / 4, 0.0f, -land_size.z / 4, 1.0f);
-    archer_1.camera.init(archer_1.position, glm::vec4(archer_1.position.x, archer_1.position.y, -archer_1.position.z, 1.0f));
+    archer_1.camera.init_char(archer_1.position, glm::vec4(archer_1.position.x, archer_1.position.y, -archer_1.position.z, 1.0f));
+    guardian_1.facing_vector = guardian_1.camera.view;
     characters.push_back(archer_1);
 
     // Team 2
@@ -1735,30 +1786,59 @@ void CreateCharacters(glm::vec3 land_size) {
     spearman_2.init_attributes(SPEARMAN);
     spearman_2.set_team(2);
     spearman_2.position = glm::vec4(land_size.x / 4, 0.0f, land_size.z / 4, 1.0f);
-    spearman_2.camera.init(spearman_2.position, glm::vec4(spearman_2.position.x, spearman_2.position.y, -spearman_2.position.z, 1.0f));
+    spearman_2.camera.init_char(spearman_2.position, glm::vec4(spearman_2.position.x, spearman_2.position.y, -spearman_2.position.z, 1.0f));
+    spearman_2.facing_vector = spearman_2.camera.view;
     characters.push_back(spearman_2);
 
     Character guardian_2;
     guardian_2.init_attributes(GUARDIAN);
     guardian_2.set_team(2);
     guardian_2.position = glm::vec4(0.0f, 0.0f, land_size.z / 4, 1.0f);
-    guardian_2.camera.init(guardian_2.position, glm::vec4(guardian_2.position.x, guardian_2.position.y, -guardian_2.position.z, 1.0f));
+    guardian_2.camera.init_char(guardian_2.position, glm::vec4(guardian_2.position.x, guardian_2.position.y, -guardian_2.position.z, 1.0f));
+    guardian_2.facing_vector = guardian_2.camera.view;
     characters.push_back(guardian_2);
 
     Character archer_2;
     archer_2.init_attributes(ARCHER);
     archer_2.set_team(2);
     archer_2.position = glm::vec4(-land_size.x / 4, 0.0f, land_size.z / 4, 1.0f);
-    archer_2.camera.init(archer_2.position, glm::vec4(archer_2.position.x, archer_2.position.y, -archer_2.position.z, 1.0f));
+    archer_2.camera.init_char(archer_2.position, glm::vec4(archer_2.position.x, archer_2.position.y, -archer_2.position.z, 1.0f));
+    archer_2.facing_vector = archer_2.camera.view;
     characters.push_back(archer_2);
 }
+
 void Character::draw() {
+    float angle = acos(dotproduct(facing_vector, glm::vec4(0.0f, 0.0f, 1.0f, 0.0f)));
+    if (facing_vector.x < 0.0)
+        angle = -acos(dotproduct(facing_vector, glm::vec4(0.0f, 0.0f, 1.0f, 0.0f)));
     glm::mat4 model = Matrix_Translate(position.x, position.y, position.z)
           * Matrix_Scale(0.03f, 0.03f, 0.03f)
-          * Matrix_Rotate_Y(-acos(dotproduct(camera.view, glm::vec4(0.0f, 0.0f, 1.0f, 0.0f))));
+          * Matrix_Rotate_Y(angle);
     glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
     glUniform1i(object_id_uniform, team + 1);
     DrawVirtualObject("Plane_Plane.003");
+}
+
+void Character::move()
+{
+    if (remaining_movement > 0){
+        position.x += camera.speed*facing_vector.x;
+        position.y += camera.speed*facing_vector.y;  // não se mexe para cima ou para baixo
+        position.z += camera.speed*facing_vector.z;
+
+        remaining_movement -= camera.speed;
+    }
+}
+
+void Character::moveFP(glm::vec4 direction)
+{
+    if (remaining_movement > 0){
+        camera.move2D(normalize(direction));
+        position.x = camera.position.x;
+        position.z = camera.position.z;
+
+        remaining_movement -= camera.speed;
+    }
 }
 
 void DrawCharacters() {
@@ -1785,10 +1865,31 @@ void Free_Camera::init(glm::vec4 pos, glm::vec4 origin)
     speed = 0.01f;
 }
 
+void Free_Camera::init_char(glm::vec4 pos, glm::vec4 look)
+{
+    glm::vec4 origin = glm::vec4(look.x, look.y + 0.28, look.z, 1.0);
+    position = glm::vec4(pos.x, pos.y + 0.28, pos.z, 1.0f);
+    view = origin - position;
+    view = view / norm(view);
+    up = glm::vec4(0.0f, 1.0f, 0.0f, 0.0f);
+    right = crossproduct(view, up);
+    right = right / norm(right);
+    v = crossproduct(view, right);
+
+    phi = acos((dotproduct(view, up)) / (norm(view)*norm(up)));
+    speed = 0.01f;
+}
+
 void Free_Camera::move(glm::vec4 direction)
 {
     position.x += speed*direction.x;
     position.y += speed*direction.y;
+    position.z += speed*direction.z;
+}
+
+void Free_Camera::move2D(glm::vec4 direction)
+{
+    position.x += speed*direction.x;
     position.z += speed*direction.z;
 }
 
@@ -2072,4 +2173,15 @@ glm::vec4 normalize(glm::vec4 aim_vector)
     float norm = sqrt(x*x + y*y + z*z);
 
     return aim_vector / norm;
+}
+
+void PassTurn()
+{
+    characters[active_character].end_turn();
+    active_character++;
+    if (active_character > characters.size() - 1)
+        active_character = 0;
+
+    lookat_camera.lookat = characters[active_character].position;
+    lookat_camera.update_camera();
 }
