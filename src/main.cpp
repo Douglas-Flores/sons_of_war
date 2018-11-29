@@ -252,6 +252,9 @@ public:
     float phi;
     // Parâmetros
     float speed;
+    // Near e Far
+    float nearplane = -0.1f;
+    float farplane  = -10.0f;
 
     void init(glm::vec4 pos, glm::vec4 origin);
     void move(glm::vec4 direction);
@@ -322,6 +325,7 @@ GLuint g_NumLoadedTextures = 0;
 
 // Câmeras
 Lookat_Camera lookat_camera;
+Free_Camera free_camera;
 
 #define FIRST_PERSON    0
 #define THIRD_PERSON    1
@@ -438,6 +442,9 @@ int main(int argc, char* argv[])
 
     // Iniciando câmera lookat
     lookat_camera.init();
+    // Iniciando free câmera
+    glm::vec4 origin = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+    free_camera.init(lookat_camera.position, origin);
 
     // Construindo o cenário
     scenary.build();
@@ -449,7 +456,7 @@ int main(int argc, char* argv[])
     active_character = 0;
 
     // Câmera começa em 3º pessoa
-    cam_mode = 1;
+    cam_mode = THIRD_PERSON;
 
     // Ficamos em loop, renderizando, até que o usuário feche a janela
     while (!glfwWindowShouldClose(window))
@@ -474,7 +481,18 @@ int main(int argc, char* argv[])
 
         // Computamos a matriz "View" utilizando os parâmetros da câmera para
         // definir o sistema de coordenadas da câmera.
-        glm::mat4 view = Matrix_Camera_View(lookat_camera.position, lookat_camera.view, lookat_camera.up);
+        glm::mat4 view;
+        switch(cam_mode){
+        case THIRD_PERSON:
+            view = Matrix_Camera_View(lookat_camera.position, lookat_camera.view, lookat_camera.up);
+            break;
+        case FIRST_PERSON:
+            view = Matrix_Camera_View(characters[active_character].camera.position, characters[active_character].camera.view, characters[active_character].camera.up);
+            break;
+        case FREE_CAM:
+            view = Matrix_Camera_View(free_camera.position, free_camera.view, free_camera.up);
+            break;
+        }
 
         // Agora computamos a matriz de Projeção.
         glm::mat4 projection;
@@ -484,7 +502,17 @@ int main(int argc, char* argv[])
             // Projeção Perspectiva.
             // Para definição do field of view (FOV), veja slide 227 do documento "Aula_09_Projecoes.pdf".
             float field_of_view = 3.141592 / 2.4f;
-            projection = Matrix_Perspective(field_of_view, g_ScreenRatio, lookat_camera.nearplane, lookat_camera.farplane);
+            switch(cam_mode){
+            case THIRD_PERSON:
+                projection = Matrix_Perspective(field_of_view, g_ScreenRatio, lookat_camera.nearplane, lookat_camera.farplane);
+                break;
+            case FIRST_PERSON:
+                projection = Matrix_Perspective(field_of_view, g_ScreenRatio, characters[active_character].camera.nearplane, characters[active_character].camera.farplane);
+                break;
+            case FREE_CAM:
+                projection = Matrix_Perspective(field_of_view, g_ScreenRatio, free_camera.nearplane, free_camera.farplane);
+                break;
+            }
         }
         else
         {
@@ -497,7 +525,17 @@ int main(int argc, char* argv[])
             float b = -t;
             float r = t*g_ScreenRatio;
             float l = -r;
-            projection = Matrix_Orthographic(l, r, b, t, lookat_camera.nearplane, lookat_camera.farplane);
+            switch(cam_mode){
+            case THIRD_PERSON:
+                projection = Matrix_Orthographic(l, r, b, t, lookat_camera.nearplane, lookat_camera.farplane);
+                break;
+            case FIRST_PERSON:
+                projection = Matrix_Orthographic(l, r, b, t, characters[active_character].camera.nearplane, characters[active_character].camera.farplane);
+                break;
+            case FREE_CAM:
+                projection = Matrix_Orthographic(l, r, b, t, free_camera.nearplane, free_camera.farplane);
+                break;
+            }
         }
 
         // Enviamos as matrizes "view" e "projection" para a placa de vídeo
@@ -517,22 +555,41 @@ int main(int argc, char* argv[])
         // Desenhamos os personagens
         DrawCharacters();
 
-        // Movimento da camera Look at
+        // Controle de Movimentos
         glm::vec4 direction = glm::vec4(1.0f, 0.0f, 0.0f, 0.0f);
         glm::vec4 foward_vec = glm::vec4(lookat_camera.view.x, 0.0f, lookat_camera.view.z, 0.0f);
         glm::vec4 right_vec = Matrix_Rotate_Y(-3.1415/2)*foward_vec;
+        switch(cam_mode){
+        case THIRD_PERSON:
+            if ( panLookatRight )
+                lookat_camera.move(right_vec);
 
-        if ( panLookatRight )
-            lookat_camera.move(right_vec);
+            if ( panLookatLeft )
+                lookat_camera.move(-right_vec);
 
-        if ( panLookatLeft )
-            lookat_camera.move(-right_vec);
+            if ( panLookatUp )
+                lookat_camera.move(foward_vec);
 
-        if ( panLookatUp )
-            lookat_camera.move(foward_vec);
+            if ( panLookatDown )
+                lookat_camera.move(-foward_vec);
+            break;
+        case FIRST_PERSON:
+            printf("to do\n");
+            break;
+        case FREE_CAM:
+            if (moveFoward)
+                free_camera.move(free_camera.view);
 
-        if ( panLookatDown )
-            lookat_camera.move(-foward_vec);
+            if (moveBackwards)
+                free_camera.move(-free_camera.view);
+
+            if (moveLeft)
+                free_camera.move(-free_camera.right);
+
+            if (moveRight)
+                free_camera.move(free_camera.right);
+            break;
+        }
 
         // Pegamos um vértice com coordenadas de modelo (0.5, 0.5, 0.5, 1) e o
         // passamos por todos os sistemas de coordenadas armazenados nas
@@ -1161,7 +1218,17 @@ void CursorPosCallback(GLFWwindow* window, double xpos, double ypos)
         float dx = xpos - g_LastCursorPosX;
         float dy = ypos - g_LastCursorPosY;
 
-        lookat_camera.look(dx,dy);
+        switch(cam_mode){
+        case THIRD_PERSON:
+            lookat_camera.look(dx,dy);
+            break;
+        case FIRST_PERSON:
+            characters[active_character].camera.look(dx, dy);
+            break;
+        case FREE_CAM:
+            free_camera.look(dx, dy);
+            break;
+        }
 
         // Atualizamos as variáveis globais para armazenar a posição atual do
         // cursor como sendo a última posição conhecida do cursor.
@@ -1214,9 +1281,9 @@ void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
     // definição do sistema de coordenadas da câmera. Isto é, a variável abaixo
     // nunca pode ser zero. Versões anteriores deste código possuíam este bug,
     // o qual foi detectado pelo aluno Vinicius Fraga (2017/2).
-    const float verysmallnumber = std::numeric_limits<float>::epsilon();
-    if (lookat_camera.distance < verysmallnumber)
-        lookat_camera.distance = verysmallnumber;
+    const float verysmallnumber = 0.1;
+    if (lookat_camera.distance < 0.4)
+        lookat_camera.distance = 0.4;
 
     lookat_camera.update_camera();
 }
@@ -1319,8 +1386,29 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
     }
 
     // Tecla L = ativa câmera livre
-    if (key == GLFW_KEY_F && action == GLFW_PRESS)
+    if (key == GLFW_KEY_L && action == GLFW_PRESS)
         cam_mode = FREE_CAM;
+
+    // Teclas de Movimentação
+    if (key == GLFW_KEY_W && action == GLFW_PRESS)
+        moveFoward = true;
+    if (key == GLFW_KEY_W && action == GLFW_RELEASE)
+        moveFoward = false;
+
+    if (key == GLFW_KEY_A && action == GLFW_PRESS)
+        moveLeft = true;
+    if (key == GLFW_KEY_A && action == GLFW_RELEASE)
+        moveLeft = false;
+
+    if (key == GLFW_KEY_S && action == GLFW_PRESS)
+        moveBackwards = true;
+    if (key == GLFW_KEY_S && action == GLFW_RELEASE)
+        moveBackwards = false;
+
+    if (key == GLFW_KEY_D && action == GLFW_PRESS)
+        moveRight = true;
+    if (key == GLFW_KEY_D && action == GLFW_RELEASE)
+        moveRight = false;
 }
 
 // Definimos o callback para impressão de erros da GLFW no terminal
@@ -1734,6 +1822,8 @@ void Free_Camera::look(float dtheta, float dphi)
 
 // Camera Look-at-------------------------------
 void Lookat_Camera::init(){
+    theta = 0;
+    phi = 3.1415/4;
     float r = distance;
     position = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
     // Computamos a posição da câmera utilizando coordenadas esféricas.
@@ -1761,7 +1851,7 @@ void Lookat_Camera::move(glm::vec4 direction)
 void Lookat_Camera::look(float dtheta, float dphi)
 {
     float phimax = 3.141592f/2;
-    float phimin = 0;
+    float phimin = 0.35;
 
     theta -= 0.01f*dtheta;
     phi += 0.01f*dphi;
@@ -1780,7 +1870,7 @@ void Lookat_Camera::update_camera()
     float r = distance;
     // Computamos a posição da câmera utilizando coordenadas esféricas.
     position.x = r*cos(phi)*sin(theta) + lookat.x;
-    position.y = r*sin(phi) + lookat.y;
+    position.y = r*sin(phi) + lookat.y + lookat.y;
     position.z = r*cos(phi)*cos(theta) + lookat.z;
 
     view = lookat - position;
@@ -1972,4 +2062,14 @@ void LoadTextureImage(const char* filename)
     stbi_image_free(data);
 
     g_NumLoadedTextures += 1;
+}
+
+glm::vec4 normalize(glm::vec4 aim_vector)
+{
+    float x = aim_vector.x;
+    float y = aim_vector.y;
+    float z = aim_vector.z;
+    float norm = sqrt(x*x + y*y + z*z);
+
+    return aim_vector / norm;
 }
