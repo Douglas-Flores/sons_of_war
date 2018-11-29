@@ -1457,6 +1457,10 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
             rotateRight = false;
         else
             moveRight = false;
+
+    // Ataque
+    if (key == GLFW_KEY_E && action == GLFW_PRESS)
+        characters[active_character].attack();
 }
 
 // Definimos o callback para impressão de erros da GLFW no terminal
@@ -1778,7 +1782,7 @@ void CreateCharacters(glm::vec3 land_size) {
     archer_1.set_team(1);
     archer_1.position = glm::vec4(-land_size.x / 4, 0.0f, -land_size.z / 4, 1.0f);
     archer_1.camera.init_char(archer_1.position, glm::vec4(archer_1.position.x, archer_1.position.y, -archer_1.position.z, 1.0f));
-    guardian_1.facing_vector = guardian_1.camera.view;
+    archer_1.facing_vector = archer_1.camera.view;
     characters.push_back(archer_1);
 
     // Team 2
@@ -1839,6 +1843,29 @@ void Character::moveFP(glm::vec4 direction)
 
         remaining_movement -= camera.speed;
     }
+}
+
+void Character::attack()
+{
+    glm::vec4 vec;
+    float distance;
+
+    if (remaining_actions <= 0)
+        return;
+
+    for (int i = 0; i < characters.size(); i++)
+        if (i != active_character){
+            if (characters[i].team != team){
+                vec = characters[i].position - position;
+                distance = norm(vec);
+                if(distance <= range){
+                    characters[i].take_damage(damage);
+                    printf("character %d, hp %f\n", i, characters[i].current_hp);
+                    remaining_actions--;
+                    break;
+                }
+            }
+        }
 }
 
 void DrawCharacters() {
@@ -2089,26 +2116,32 @@ void Character::init_attributes(int type){
         case SPEARMAN:
             max_hp = 100;
             current_hp = max_hp;
-            max_movement = 10;
+            max_movement = 2;
             remaining_movement = max_movement;
             max_actions = 1;
             remaining_actions = max_actions;
+            range = 0.3;
+            damage = 50;
             break;
         case GUARDIAN:
             max_hp = 200;
             current_hp = max_hp;
-            max_movement = 5;
+            max_movement = 1;
             remaining_movement = max_movement;
             max_actions = 1;
             remaining_actions = max_actions;
+            range = 0.2;
+            damage = 35;
             break;
         case ARCHER:
             max_hp = 70;
             current_hp = max_hp;
-            max_movement = 15;
+            max_movement = 2.5;
             remaining_movement = max_movement;
             max_actions = 1;
             remaining_actions = max_actions;
+            range = 5;
+            damage = 50;
             break;
     }
 }
