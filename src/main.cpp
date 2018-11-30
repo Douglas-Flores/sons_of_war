@@ -1847,6 +1847,8 @@ void Character::move()
             position.z += camera.speed*facing_vector.z;
 
             remaining_movement -= camera.speed;
+            camera.position.x = position.x;
+            camera.position.z = position.z;
         }
     }
 }
@@ -1854,11 +1856,19 @@ void Character::move()
 void Character::moveFP(glm::vec4 direction)
 {
     if (remaining_movement > 0){
-        camera.move2D(normalize(direction));
-        position.x = camera.position.x;
-        position.z = camera.position.z;
+        glm::vec4 future_place;
+        future_place.x = position.x + camera.speed*facing_vector.x;
+        future_place.y = position.y + camera.speed*facing_vector.y;  // não se mexe para cima ou para baixo
+        future_place.z = position.z + camera.speed*facing_vector.z;
+        future_place.w = 1.0;
 
-        remaining_movement -= camera.speed;
+        if (scenary.heigth(position) == scenary.heigth(future_place)){
+            camera.move2D(normalize(direction));
+            position.x = camera.position.x;
+            position.z = camera.position.z;
+
+            remaining_movement -= camera.speed;
+        }
     }
 }
 
@@ -1866,22 +1876,28 @@ void Character::attack()
 {
     glm::vec4 vec;
     float distance;
+    float angle;
 
     if (remaining_actions <= 0)
         return;
 
     for (int i = 0; i < characters.size(); i++)
-        if (i != active_character){
-            if (characters[i].team != team){
-                vec = characters[i].position - position;
-                distance = norm(vec);
-                if(distance <= range){
+        if (i != active_character && characters[i].team != team){
+            vec = characters[i].position - position;
+            distance = norm(vec);
+            if(distance <= range){
+                vec = normalize(vec);
+                angle = dotproduct(facing_vector, vec);
+                angle = acos(angle);
+
+                if (angle <= 0.2618){
                     characters[i].take_damage(damage);
                     printf("character %d, hp %f\n", i, characters[i].current_hp);
                     remaining_actions--;
                     break;
                 }
             }
+
         }
 }
 
@@ -2133,9 +2149,9 @@ float Scenary::heigth(glm::vec4 dot)
     float x_min, x_max, z_min, z_max;
 
     // Testa se está em cima da terra primeiro
-    x_min = -land_size.x / 2;
+    x_min = -(land_size.x / 2) + 0.1;
     x_max = -x_min;
-    z_min = -land_size.z / 2;
+    z_min = -(land_size.z / 2) + 0.1;
     z_max = -z_min;
 
     if (dot.x < x_min)
