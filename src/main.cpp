@@ -273,6 +273,7 @@ public:
 
     void build();
     void draw();
+    float heigth(glm::vec4 dot);
 };
 
 #define SPEARMAN    1
@@ -1765,6 +1766,7 @@ void CreateCharacters(glm::vec3 land_size) {
     spearman_1.init_attributes(SPEARMAN);
     spearman_1.set_team(1);
     spearman_1.position = glm::vec4(land_size.x / 4, 0.0f, -land_size.z / 4, 1.0f);
+    spearman_1.position.y = scenary.heigth(spearman_1.position);
     spearman_1.camera.init_char(spearman_1.position, glm::vec4(spearman_1.position.x, spearman_1.position.y, -spearman_1.position.z, 1.0f));
     spearman_1.facing_vector = spearman_1.camera.view;
     characters.push_back(spearman_1);
@@ -1773,6 +1775,7 @@ void CreateCharacters(glm::vec3 land_size) {
     guardian_1.init_attributes(GUARDIAN);
     guardian_1.set_team(1);
     guardian_1.position = glm::vec4(0.0f, 0.0f, -land_size.z / 4, 1.0f);
+    guardian_1.position.y = scenary.heigth(guardian_1.position);
     guardian_1.camera.init_char(guardian_1.position, glm::vec4(guardian_1.position.x, guardian_1.position.y, -guardian_1.position.z, 1.0f));
     guardian_1.facing_vector = guardian_1.camera.view;
     characters.push_back(guardian_1);
@@ -1781,6 +1784,7 @@ void CreateCharacters(glm::vec3 land_size) {
     archer_1.init_attributes(ARCHER);
     archer_1.set_team(1);
     archer_1.position = glm::vec4(-land_size.x / 4, 0.0f, -land_size.z / 4, 1.0f);
+    archer_1.position.y = scenary.heigth(archer_1.position);
     archer_1.camera.init_char(archer_1.position, glm::vec4(archer_1.position.x, archer_1.position.y, -archer_1.position.z, 1.0f));
     archer_1.facing_vector = archer_1.camera.view;
     characters.push_back(archer_1);
@@ -1790,6 +1794,7 @@ void CreateCharacters(glm::vec3 land_size) {
     spearman_2.init_attributes(SPEARMAN);
     spearman_2.set_team(2);
     spearman_2.position = glm::vec4(land_size.x / 4, 0.0f, land_size.z / 4, 1.0f);
+    spearman_2.position.y = scenary.heigth(spearman_2.position);
     spearman_2.camera.init_char(spearman_2.position, glm::vec4(spearman_2.position.x, spearman_2.position.y, -spearman_2.position.z, 1.0f));
     spearman_2.facing_vector = spearman_2.camera.view;
     characters.push_back(spearman_2);
@@ -1798,6 +1803,7 @@ void CreateCharacters(glm::vec3 land_size) {
     guardian_2.init_attributes(GUARDIAN);
     guardian_2.set_team(2);
     guardian_2.position = glm::vec4(0.0f, 0.0f, land_size.z / 4, 1.0f);
+    guardian_2.position.y = scenary.heigth(guardian_2.position);
     guardian_2.camera.init_char(guardian_2.position, glm::vec4(guardian_2.position.x, guardian_2.position.y, -guardian_2.position.z, 1.0f));
     guardian_2.facing_vector = guardian_2.camera.view;
     characters.push_back(guardian_2);
@@ -1806,6 +1812,7 @@ void CreateCharacters(glm::vec3 land_size) {
     archer_2.init_attributes(ARCHER);
     archer_2.set_team(2);
     archer_2.position = glm::vec4(-land_size.x / 4, 0.0f, land_size.z / 4, 1.0f);
+    archer_2.position.y = scenary.heigth(archer_2.position);
     archer_2.camera.init_char(archer_2.position, glm::vec4(archer_2.position.x, archer_2.position.y, -archer_2.position.z, 1.0f));
     archer_2.facing_vector = archer_2.camera.view;
     characters.push_back(archer_2);
@@ -1813,11 +1820,13 @@ void CreateCharacters(glm::vec3 land_size) {
 
 void Character::draw() {
     float angle = acos(dotproduct(facing_vector, glm::vec4(0.0f, 0.0f, 1.0f, 0.0f)));
+
     if (facing_vector.x < 0.0)
         angle = -acos(dotproduct(facing_vector, glm::vec4(0.0f, 0.0f, 1.0f, 0.0f)));
+
     glm::mat4 model = Matrix_Translate(position.x, position.y, position.z)
-          * Matrix_Scale(0.03f, 0.03f, 0.03f)
-          * Matrix_Rotate_Y(angle);
+                    * Matrix_Scale(0.03f, 0.03f, 0.03f)
+                    * Matrix_Rotate_Y(angle);
     glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
     glUniform1i(object_id_uniform, team + 1);
     DrawVirtualObject("Plane_Plane.003");
@@ -1826,11 +1835,19 @@ void Character::draw() {
 void Character::move()
 {
     if (remaining_movement > 0){
-        position.x += camera.speed*facing_vector.x;
-        position.y += camera.speed*facing_vector.y;  // não se mexe para cima ou para baixo
-        position.z += camera.speed*facing_vector.z;
+        glm::vec4 future_place;
+        future_place.x = position.x + camera.speed*facing_vector.x;
+        future_place.y = position.y + camera.speed*facing_vector.y;  // não se mexe para cima ou para baixo
+        future_place.z = position.z + camera.speed*facing_vector.z;
+        future_place.w = 1.0;
 
-        remaining_movement -= camera.speed;
+        if (scenary.heigth(position) == scenary.heigth(future_place)){
+            position.x += camera.speed*facing_vector.x;
+            position.y += camera.speed*facing_vector.y;  // não se mexe para cima ou para baixo
+            position.z += camera.speed*facing_vector.z;
+
+            remaining_movement -= camera.speed;
+        }
     }
 }
 
@@ -2108,6 +2125,45 @@ void Scenary::draw(){
         glUniform1i(object_id_uniform, LAND);
         DrawVirtualObject("Box");
     }
+}
+
+float Scenary::heigth(glm::vec4 dot)
+{
+    float heigth = 0.0;
+    float x_min, x_max, z_min, z_max;
+
+    // Testa se está em cima da terra primeiro
+    x_min = -land_size.x / 2;
+    x_max = -x_min;
+    z_min = -land_size.z / 2;
+    z_max = -z_min;
+
+    if (dot.x < x_min)
+        heigth = -1;
+    else if (dot.x > x_max)
+        heigth = -1;
+    else if (dot.z < z_min)
+        heigth = -1;
+    else if (dot.z > z_max)
+        heigth = -1;
+    else
+        heigth = 0;
+    // Se estiver fora da terra, não precisa testar os planaltos
+    if ( heigth == -1)
+        return heigth;
+
+    for(int i = 0; i < plateaus.size(); i++){
+        x_min = (plateaus[i].position.x - plateaus[i].scale.x / 2);
+        x_max = (plateaus[i].position.x + plateaus[i].scale.x / 2);
+        z_min = (plateaus[i].position.z - plateaus[i].scale.z / 2);
+        z_max = (plateaus[i].position.z + plateaus[i].scale.z / 2);
+
+        if (dot.x > x_min && dot.x < x_max && dot.z > z_min && dot.z < z_max)
+            heigth = plateaus[i].position.y + plateaus[i].scale.y / 2;
+
+    }
+
+    return heigth;
 }
 
 void Character::init_attributes(int type){
