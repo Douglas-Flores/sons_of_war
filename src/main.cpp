@@ -430,7 +430,6 @@ int main(int argc, char* argv[])
     LoadTextureImage("../../data/grass_texture.jpg");       // TextureImage2
     LoadTextureImage("../../data/water_normal_map.jpg");    // TextureImage3
     LoadTextureImage("../../data/dirt_texture.jpg");        // TextureImage4
-    LoadTextureImage("../../data/tc-earth_daymap_surface.jpg");
 
     // Construímos a representação de objetos geométricos através de malhas de triângulos
     BuildMeshes(argc, argv);
@@ -442,7 +441,7 @@ int main(int argc, char* argv[])
     glEnable(GL_DEPTH_TEST);
 
     // Habilitamos o Backface Culling. Veja slides 22-34 do documento "Aula_13_Clipping_and_Culling.pdf".
-    glDisable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glFrontFace(GL_CCW);
 
@@ -814,7 +813,6 @@ void LoadShadersFromFiles()
     glUniform1i(glGetUniformLocation(program_id, "TextureImage2"), 2);
     glUniform1i(glGetUniformLocation(program_id, "TextureImage3"), 3);
     glUniform1i(glGetUniformLocation(program_id, "TextureImage4"), 4);
-    glUniform1i(glGetUniformLocation(program_id, "TextureImage5"), 5);
     glUseProgram(0);
 }
 
