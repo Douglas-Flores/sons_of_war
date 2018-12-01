@@ -53,6 +53,9 @@ void main()
     // Posição do vértice atual no sistema de coordenadas global (World).
     position_world = model * model_coefficients;
 
+    // Posição do vértice atual no sistema de coordenadas local do modelo.
+    position_model = model_coefficients;
+
     // Normal do vértice atual no sistema de coordenadas global (World).
     // Veja slide 107 do documento "Aula_07_Transformacoes_Geometricas_3D.pdf".
     normal = inverse(transpose(model)) * normal_coefficients;

@@ -418,7 +418,7 @@
 	<fstream>
 	<sstream>
 
-1543537667 source:c:\users\douglas\documents\repositórios\sons_of_war\src\main.cpp
+1543671103 source:c:\users\douglas\documents\repositórios\sons_of_war\src\main.cpp
 	<cmath>
 	<cstdio>
 	<cstdlib>
@@ -1073,7 +1073,7 @@
 	<intrin.h>
 	<arm_neon.h>
 
-1543342285 c:\users\douglas\documents\repositórios\sons_of_war\include\stb_image.h
+1541506884 c:\users\douglas\documents\repositórios\sons_of_war\include\stb_image.h
 	"stb_image.h"
 	<stdio.h>
 	<stdarg.h>
@@ -1088,4 +1088,7 @@
 	<emmintrin.h>
 	<intrin.h>
 	<arm_neon.h>
+
+1541506884 source:c:\users\douglas\documents\repositórios\sons_of_war\src\stb_image.cpp
+	"stb_image.h"
 
