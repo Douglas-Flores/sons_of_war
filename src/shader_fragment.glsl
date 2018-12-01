@@ -162,8 +162,8 @@ void main()
             Kd = texture(TextureImage2, vec2(U,V)).rgba;
         }
         Ks = vec4(0.0, 0.0, 0.0, 1.0);
-        Ka = vec4(0.0, 0.0, 0.0, 1.0);
-        q = 20.0;
+        Ka = vec4(0.0, 0.5, 0.0, 1.0);
+        q = 0.0;
     }
     else if ( object_id == WATER )
     {
@@ -185,7 +185,7 @@ void main()
         n.z = (Kd.z);
         n.w = 0.0f;*/
         //n = normalize(n);
-        Kd = vec4(0.05f, 0.45f, 0.8f, 0.2f);
+        Kd = vec4(0.05f, 0.45f, 0.8f, 0.01f);
         Ks = vec4(0.5, 0.5, 0.5, 1.0f);
         Ka = vec4(0.05, 0.45, 0.8, 1.0);
         q = 512.0;
@@ -239,9 +239,7 @@ void main()
     color = pow(color, vec4(1.0,1.0,1.0,1.0)/2.2);
 
     if(object_id == LAND)
-    {
          color = pow(color0, vec4(1.0,1.0,1.0,1.0)/4.2);
-    }
 
     else if(object_id == WATER)
     {

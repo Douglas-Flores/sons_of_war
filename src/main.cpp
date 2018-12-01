@@ -52,6 +52,10 @@
 // Header de tempo
 #include<time.h>
 
+// Constantes
+#define M_PI   3.14159265358979323846
+#define M_PI_2 1.57079632679489661923
+
 // Estrutura que representa um modelo geométrico carregado a partir de um
 // arquivo ".obj". Veja https://en.wikipedia.org/wiki/Wavefront_.obj_file .
 struct ObjModel
@@ -563,6 +567,26 @@ int main(int argc, char* argv[])
         #define WATER       1
         #define CHAR_TEAM_1 2
         #define CHAR_TEAM_2 3
+
+        glm::mat4 model = Matrix_Translate(0.0, 0.3, 0.0) * Matrix_Scale(0.5f, 0.5f, 0.5f);
+        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+        glUniform1i(object_id_uniform, 2);
+        DrawVirtualObject("shield");
+
+        model = Matrix_Translate(0.0, 0.3, 0.0) * Matrix_Scale(0.5f, 0.5f, 0.5f);
+        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+        glUniform1i(object_id_uniform, 2);
+        DrawVirtualObject("wewe");
+
+        model = Matrix_Translate(0.0, 0.0, 0.0) * Matrix_Scale(1.0f, 1.0f, 1.0f);
+        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+        glUniform1i(object_id_uniform, 7);
+        DrawVirtualObject("sword");
+
+        model = Matrix_Translate(0.0, 0.0, 0.0) * Matrix_Scale(1.0f, 1.0f, 1.0f);
+        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+        glUniform1i(object_id_uniform, 7);
+        DrawVirtualObject("armsofsparta");
 
         // Desenhamos o cenário
         scenary.draw();
@@ -1801,9 +1825,41 @@ void BuildMeshes(int argc, char* argv[]){
     ComputeNormals(&cubemodel);
     BuildTrianglesAndAddToVirtualScene(&cubemodel);
 
+    // Modelo do corpo
     ObjModel bodymodel("../../data/body.obj");
     ComputeNormals(&bodymodel);
     BuildTrianglesAndAddToVirtualScene(&bodymodel);
+
+    // Modelo do escudo
+    ObjModel shieldmodel("../../data/shield.obj");
+    ComputeNormals(&shieldmodel);
+    BuildTrianglesAndAddToVirtualScene(&shieldmodel);
+
+    // Modelo lâmina da espada
+    ObjModel blademodel("../../data/sword_blade.obj");
+    ComputeNormals(&blademodel);
+    BuildTrianglesAndAddToVirtualScene(&blademodel);
+
+    // Modelo da empunhadura da espada
+    ObjModel hiltmodel("../../data/sword_hilt.obj");
+    ComputeNormals(&hiltmodel);
+    BuildTrianglesAndAddToVirtualScene(&hiltmodel);
+
+    // Modelo da guarda da espada
+    ObjModel guardmodel("../../data/sword_guard.obj");
+    ComputeNormals(&guardmodel);
+    BuildTrianglesAndAddToVirtualScene(&guardmodel);
+
+    // Modelo da haste da lança
+    ObjModel polemodel("../../data/spear_pole.obj");
+    ComputeNormals(&polemodel);
+    BuildTrianglesAndAddToVirtualScene(&polemodel);
+
+    // Modelo da lâmina da lança
+    ObjModel armmodel("../../data/spear_arm.obj");
+    ComputeNormals(&armmodel);
+    BuildTrianglesAndAddToVirtualScene(&armmodel);
+
 
     if ( argc > 1 )
     {
@@ -1878,12 +1934,86 @@ void Character::draw() {
     if (facing_vector.x < 0.0)
         angle = -acos(dotproduct(facing_vector, glm::vec4(0.0f, 0.0f, 1.0f, 0.0f)));
 
-    glm::mat4 model = Matrix_Translate(position.x, position.y, position.z)
-                    * Matrix_Scale(0.03f, 0.03f, 0.03f)
-                    * Matrix_Rotate_Y(angle);
-    glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-    glUniform1i(object_id_uniform, team + 1);
-    DrawVirtualObject("Plane_Plane.003");
+    glm::mat4 model = Matrix_Identity();
+    // Posição do corpo
+    model = model * Matrix_Translate(position.x, position.y, position.z);
+    PushMatrix(model);
+        // Desenha o torso
+        model = model * Matrix_Scale(0.03f, 0.03f, 0.03f)
+                      * Matrix_Rotate_Y(angle);
+        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+        glUniform1i(object_id_uniform, team + 1);
+        DrawVirtualObject("Plane_Plane.003");
+    PopMatrix(model);
+
+    if (role == GUARDIAN)
+    {
+        // Desenha a espada do guardiao
+        PushMatrix(model);
+            model = model * Matrix_Rotate_Y(angle)
+                          * Matrix_Translate(-0.1f, 0.07f, 0.0f)
+                          * Matrix_Scale(0.04f, 0.04f, 0.04f);
+            glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+            glUniform1i(object_id_uniform, team + 1);
+            DrawVirtualObject("hilt");
+            // Lâmina da espada
+            PushMatrix(model);
+                model = model;
+                glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                glUniform1i(object_id_uniform, team + 1);
+                DrawVirtualObject("blade");
+            PopMatrix(model);
+            // Guarda da espada
+            PushMatrix(model);
+                model = model;
+                glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                glUniform1i(object_id_uniform, team + 1);
+                DrawVirtualObject("guard");
+            PopMatrix(model);
+        PopMatrix(model);
+
+        // Desenha o escudo do guardiao
+        PushMatrix(model);
+            model = model * Matrix_Rotate_Y(angle)
+                          * Matrix_Translate(0.06f, 0.15f, 0.025f)
+                          * Matrix_Scale(0.005f, 0.005f, 0.005f)
+                          * Matrix_Rotate_X(-M_PI_2);
+            glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+            glUniform1i(object_id_uniform, team + 1);
+            DrawVirtualObject("Heater_Shield_body.001");
+        PopMatrix(model);
+    }
+    else if (role == SPEARMAN)
+    {
+        // Desenha a lança do lanceiro
+        PushMatrix(model);
+            model = model * Matrix_Rotate_Y(angle)
+                          * Matrix_Translate(0.1f, 0.15f, 0.0f)
+                          * Matrix_Scale(0.12f, 0.12f, 0.12f);
+            glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+            glUniform1i(object_id_uniform, team + 1);
+            DrawVirtualObject("pole");
+
+            PushMatrix(model);
+                model = model;
+                glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                glUniform1i(object_id_uniform, team + 1);
+                DrawVirtualObject("arm");
+            PopMatrix(model);
+        PopMatrix(model);
+    }
+    else if (role == ARCHER)
+    {
+        // Desenha o arco do arqueiro
+        PushMatrix(model);
+            model = model * Matrix_Translate(-0.1f, 0.15f, 0.0f)
+                          * Matrix_Scale(0.015f, 0.015f, 0.015f)
+                          * Matrix_Rotate_Y(angle);
+            glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+            glUniform1i(object_id_uniform, team + 1);
+            DrawVirtualObject("Plane_Plane.003");
+        PopMatrix(model);
+    }
 }
 
 void Character::move()
