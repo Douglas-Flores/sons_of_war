@@ -152,6 +152,8 @@ void PassTurn();
 float attack_anim_melee_angle(float duration);
 void init_time(void);
 float get_delta_time(void);
+glm::vec4 quadratic_bezier(glm::vec4 p1, glm::vec4 p2, glm::vec4 p3, float t);
+glm::vec4 animate_projectile(glm::vec4 p1, glm::vec4 p2, glm::vec4 p3, float duration);
 
 // Definimos uma estrutura que armazenará dados necessários para renderizar
 // cada objeto da cena virtual.
@@ -359,6 +361,7 @@ Scenary scenary;
 // Characters
 std::vector<Character> characters;
 int active_character;
+int target;  // Alvo de um ataque
 
 int main(int argc, char* argv[])
 {
@@ -1968,7 +1971,6 @@ void Character::draw() {
         glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
         glUniform1i(object_id_uniform, team + 1);
         DrawVirtualObject("Plane_Plane.003");
-    PopMatrix(model);
 
     if (role == GUARDIAN)
     {
@@ -1976,9 +1978,8 @@ void Character::draw() {
         if (!isAttacking)
         {
             PushMatrix(model);
-                model = model * Matrix_Rotate_Y(angle)
-                              * Matrix_Translate(-0.1f, 0.07f, 0.0f)
-                              * Matrix_Scale(0.04f, 0.04f, 0.04f);
+                model = model * Matrix_Translate(-2.0f, 2.0f, 0.0f)
+                              * Matrix_Scale(1.5f, 1.5f, 1.5f);
                 glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
                 glUniform1i(object_id_uniform, team + 1);
                 DrawVirtualObject("hilt");
@@ -2004,11 +2005,10 @@ void Character::draw() {
                 isAttacking = false;
 
             PushMatrix(model);
-                model = model * Matrix_Rotate_Y(angle)
-                              * Matrix_Rotate_Y(attack_anim_melee_angle(200))
-                              * Matrix_Translate(-0.1f, 0.07f, 0.0f)
+                model = model * Matrix_Rotate_Y(attack_anim_melee_angle(200))
+                              * Matrix_Translate(-1.3f, 2.0f, 0.0f)
                               * Matrix_Rotate_X(M_PI_2)
-                              * Matrix_Scale(0.04f, 0.04f, 0.04f);
+                              * Matrix_Scale(1.5f, 1.5f, 1.5f);
                 glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
                 glUniform1i(object_id_uniform, team + 1);
                 DrawVirtualObject("hilt");
@@ -2031,9 +2031,9 @@ void Character::draw() {
 
         // Desenha o escudo do guardiao
         PushMatrix(model);
-            model = model * Matrix_Rotate_Y(angle)
-                          * Matrix_Translate(0.06f, 0.15f, 0.025f)
-                          * Matrix_Scale(0.005f, 0.005f, 0.005f)
+            model = model
+                          * Matrix_Translate(2.0f, 6.0f, 1.0f)
+                          * Matrix_Scale(0.17f, 0.17f, 0.17f)
                           * Matrix_Rotate_X(-M_PI_2);
             glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
             glUniform1i(object_id_uniform, team + 1);
@@ -2046,9 +2046,9 @@ void Character::draw() {
         {
             // Desenha a lança do lanceiro
             PushMatrix(model);
-                model = model * Matrix_Rotate_Y(angle)
-                              * Matrix_Translate(0.12f, 0.15f, 0.0f)
-                              * Matrix_Scale(0.12f, 0.12f, 0.12f);
+                model = model
+                              * Matrix_Translate(3.5f, 6.0f, 0.0f)
+                              * Matrix_Scale(3.0f, 3.0f, 3.0f);
                 glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
                 glUniform1i(object_id_uniform, team + 1);
                 DrawVirtualObject("pole");
@@ -2067,11 +2067,11 @@ void Character::draw() {
                 isAttacking = false;
             // Desenha a lança do lanceiro
             PushMatrix(model);
-                model = model * Matrix_Rotate_Y(angle)
+                model = model
                               * Matrix_Rotate_Y(attack_anim_melee_angle(200))
-                              * Matrix_Translate(0.2f, 0.15f, 0.12f)
+                              * Matrix_Translate(6.67f, 5.0f, 4.0f)
                               * Matrix_Rotate_X(M_PI_2)
-                              * Matrix_Scale(0.12f, 0.12f, 0.12f);
+                              * Matrix_Scale(3.0f, 3.0f, 3.0f);
                 glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
                 glUniform1i(object_id_uniform, team + 1);
                 DrawVirtualObject("pole");
@@ -2089,28 +2089,53 @@ void Character::draw() {
     {
         // Desenha o arco do arqueiro
         PushMatrix(model);
-            model = model * Matrix_Rotate_Y(angle)
-                          * Matrix_Translate(0.05f, 0.2f, 0.0f)
+            model = model
+                          * Matrix_Translate(0.2f, 8.0f, 0.0f)
                           * Matrix_Rotate_Y(-M_PI_2)
                           * Matrix_Rotate_Z(M_PI_2)
-                          * Matrix_Scale(0.0015f, 0.0015f, 0.0015f);
+                          * Matrix_Scale(0.05f, 0.05f, 0.05f);
             glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
             glUniform1i(object_id_uniform, team + 1);
             DrawVirtualObject("bow");
         PopMatrix(model);
 
         PushMatrix(model);
-            model = model * Matrix_Rotate_Y(angle)
-                          * Matrix_Translate(0.0f, 0.18f, -0.018f)
+            model = model
+                          * Matrix_Translate(0.0f, 6.0f, -0.6f)
                           * Matrix_Rotate_Z(M_PI / 6)
                           * Matrix_Rotate_Y(M_PI_2)
                           * Matrix_Rotate_Z(M_PI_2)
-                          * Matrix_Scale(0.0018f, 0.0018f, 0.0018f);
+                          * Matrix_Scale(0.06f, 0.06f, 0.06f);
             glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
             glUniform1i(object_id_uniform, team + 1);
             DrawVirtualObject("quiver");
         PopMatrix(model);
+
+        if (isAttacking)
+        {
+            if (get_delta_time() >= 1000)
+                isAttacking = false;
+
+            glm::vec4 p1 = glm::vec4(position.x, position.y + 0.25, position.z, 1.0f);
+            glm::vec4 p3 = glm::vec4(characters[target].position.x, characters[target].position.y + 0.25, characters[target].position.z, 1.0f);
+            glm::vec4 p2 = p3 - p1;
+            p2 = glm::vec4(0.5*p2.x, 0.5*p2.y, 0.5*p2.z, p2.w);
+            p2 = p1 + p2;
+            p2.y = norm(p3 - p1);
+            glm::vec4 projectile_position = animate_projectile(p1, p2, p3, 1000);
+            PushMatrix(model);
+                model = model * Matrix_Translate(projectile_position.x, projectile_position.y, projectile_position.z)
+                              * Matrix_Rotate_Z(0)
+                              * Matrix_Rotate_Y(M_PI_2)
+                              * Matrix_Rotate_Z(0)
+                              * Matrix_Scale(0.1f, 0.1f, 0.1f);
+                glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                glUniform1i(object_id_uniform, team + 1);
+                DrawVirtualObject("arrow");
+            PopMatrix(model);
+        }
     }
+    PopMatrix(model);
 }
 
 void Character::move()
@@ -2180,6 +2205,7 @@ void Character::attack()
                     printf("character %d, hp %f\n", i, characters[i].current_hp);
                     remaining_actions--;
                     isAttacking = true;
+                    target = i;
                     init_time();
                     break;
                 }
@@ -2553,4 +2579,23 @@ float get_delta_time(void)
     float delta_time = (time - old_time) * 1000.0;
 
     return delta_time;
+}
+
+glm::vec4 quadratic_bezier(glm::vec4 p1, glm::vec4 p2, glm::vec4 p3, float t)
+{
+    glm::vec4 c = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
+    glm::vec4 c12 = p1 + t*(p2 - p1);
+    glm::vec4 c23 = p2 + t*(p3 - p2);
+
+    c = c12 + t*(c23 - c12);
+    return c;
+}
+
+glm::vec4 animate_projectile(glm::vec4 p1, glm::vec4 p2, glm::vec4 p3, float duration)
+{
+    float t;
+    t = get_delta_time() / duration;
+    t = sin((M_PI/2)*(2*t-1))/2 + 0.5;
+
+    return quadratic_bezier(p1, p2, p3, t);
 }
