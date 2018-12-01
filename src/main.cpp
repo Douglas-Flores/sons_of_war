@@ -1869,6 +1869,21 @@ void BuildMeshes(int argc, char* argv[]){
     ComputeNormals(&armmodel);
     BuildTrianglesAndAddToVirtualScene(&armmodel);
 
+    // Modelo do arco
+    ObjModel bowmodel("../../data/bow.obj");
+    ComputeNormals(&bowmodel);
+    BuildTrianglesAndAddToVirtualScene(&bowmodel);
+
+    // Modelo da aljava
+    ObjModel quivermodel("../../data/quiver.obj");
+    ComputeNormals(&quivermodel);
+    BuildTrianglesAndAddToVirtualScene(&quivermodel);
+
+    // Modelo da flecha
+    ObjModel arrowmodel("../../data/arrow.obj");
+    ComputeNormals(&arrowmodel);
+    BuildTrianglesAndAddToVirtualScene(&arrowmodel);
+
 
     if ( argc > 1 )
     {
@@ -2074,12 +2089,26 @@ void Character::draw() {
     {
         // Desenha o arco do arqueiro
         PushMatrix(model);
-            model = model * Matrix_Translate(-0.1f, 0.15f, 0.0f)
-                          * Matrix_Scale(0.015f, 0.015f, 0.015f)
-                          * Matrix_Rotate_Y(angle);
+            model = model * Matrix_Rotate_Y(angle)
+                          * Matrix_Translate(0.05f, 0.2f, 0.0f)
+                          * Matrix_Rotate_Y(-M_PI_2)
+                          * Matrix_Rotate_Z(M_PI_2)
+                          * Matrix_Scale(0.0015f, 0.0015f, 0.0015f);
             glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
             glUniform1i(object_id_uniform, team + 1);
-            DrawVirtualObject("Plane_Plane.003");
+            DrawVirtualObject("bow");
+        PopMatrix(model);
+
+        PushMatrix(model);
+            model = model * Matrix_Rotate_Y(angle)
+                          * Matrix_Translate(0.0f, 0.18f, -0.018f)
+                          * Matrix_Rotate_Z(M_PI / 6)
+                          * Matrix_Rotate_Y(M_PI_2)
+                          * Matrix_Rotate_Z(M_PI_2)
+                          * Matrix_Scale(0.0018f, 0.0018f, 0.0018f);
+            glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+            glUniform1i(object_id_uniform, team + 1);
+            DrawVirtualObject("quiver");
         PopMatrix(model);
     }
 }
@@ -2101,6 +2130,8 @@ void Character::move()
             remaining_movement -= camera.speed;
             camera.position.x = position.x;
             camera.position.z = position.z;
+            lookat_camera.lookat = position;
+            lookat_camera.update_camera();
         }
     }
 }
@@ -2120,6 +2151,8 @@ void Character::moveFP(glm::vec4 direction)
             position.z = camera.position.z;
 
             remaining_movement -= camera.speed;
+            lookat_camera.lookat = position;
+            lookat_camera.update_camera();
         }
     }
 }
