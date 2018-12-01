@@ -311,13 +311,7 @@ public:
 
     void attack();
     void init_attributes(int type);
-    void take_damage(float delta){
-        current_hp = current_hp - delta;
-        if (current_hp > max_hp)
-            current_hp = max_hp;
-        else if (current_hp < 0)
-            current_hp = 0;
-    }
+    void take_damage(float delta);
     void end_turn() {
         remaining_movement = max_movement;
         remaining_actions = max_actions;
@@ -2089,8 +2083,7 @@ void Character::draw() {
     {
         // Desenha o arco do arqueiro
         PushMatrix(model);
-            model = model
-                          * Matrix_Translate(0.2f, 8.0f, 0.0f)
+            model = model * Matrix_Translate(0.2f, 8.0f, 0.0f)
                           * Matrix_Rotate_Y(-M_PI_2)
                           * Matrix_Rotate_Z(M_PI_2)
                           * Matrix_Scale(0.05f, 0.05f, 0.05f);
@@ -2100,8 +2093,7 @@ void Character::draw() {
         PopMatrix(model);
 
         PushMatrix(model);
-            model = model
-                          * Matrix_Translate(0.0f, 6.0f, -0.6f)
+            model = model * Matrix_Translate(0.0f, 6.0f, -0.6f)
                           * Matrix_Rotate_Z(M_PI / 6)
                           * Matrix_Rotate_Y(M_PI_2)
                           * Matrix_Rotate_Z(M_PI_2)
@@ -2110,32 +2102,33 @@ void Character::draw() {
             glUniform1i(object_id_uniform, team + 1);
             DrawVirtualObject("quiver");
         PopMatrix(model);
-
-        if (isAttacking)
-        {
-            if (get_delta_time() >= 1000)
-                isAttacking = false;
-
-            glm::vec4 p1 = glm::vec4(position.x, position.y + 0.25, position.z, 1.0f);
-            glm::vec4 p3 = glm::vec4(characters[target].position.x, characters[target].position.y + 0.25, characters[target].position.z, 1.0f);
-            glm::vec4 p2 = p3 - p1;
-            p2 = glm::vec4(0.5*p2.x, 0.5*p2.y, 0.5*p2.z, p2.w);
-            p2 = p1 + p2;
-            p2.y = norm(p3 - p1);
-            glm::vec4 projectile_position = animate_projectile(p1, p2, p3, 1000);
-            PushMatrix(model);
-                model = model * Matrix_Translate(projectile_position.x, projectile_position.y, projectile_position.z)
-                              * Matrix_Rotate_Z(0)
-                              * Matrix_Rotate_Y(M_PI_2)
-                              * Matrix_Rotate_Z(0)
-                              * Matrix_Scale(0.1f, 0.1f, 0.1f);
-                glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-                glUniform1i(object_id_uniform, team + 1);
-                DrawVirtualObject("arrow");
-            PopMatrix(model);
-        }
     }
     PopMatrix(model);
+
+    if (isAttacking && role == ARCHER)
+    {
+        if (get_delta_time() >= 1000)
+            isAttacking = false;
+
+        glm::vec4 p1 = glm::vec4(position.x, position.y + 0.25, position.z, 1.0f);
+        glm::vec4 p3 = glm::vec4(characters[target].position.x, characters[target].position.y + 0.25, characters[target].position.z, 1.0f);
+        glm::vec4 p2 = p3 - p1;
+        p2 = glm::vec4(0.5*p2.x, 0.5*p2.y, 0.5*p2.z, p2.w);
+        p2 = p1 + p2;
+        p2.y = norm(p3 - p1);
+
+        glm::vec4 projectile_position = animate_projectile(p1, p2, p3, 1000);
+        p2 = normalize(p3 - p1);
+        p1 = glm::vec4(0.0f, 0.0f, 1.0, 0.0f);
+        model =  Matrix_Identity()
+               * Matrix_Translate(projectile_position.x, projectile_position.y, projectile_position.z)
+               * Matrix_Rotate_Z(0)
+               * Matrix_Rotate_Y(M_PI_2 + acos(dotproduct(p2,p1)))
+               * Matrix_Scale(0.005f, 0.005f, 0.005f);
+        glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+        glUniform1i(object_id_uniform, team + 1);
+        DrawVirtualObject("arrow");
+    }
 }
 
 void Character::move()
@@ -2212,6 +2205,16 @@ void Character::attack()
             }
 
         }
+}
+
+void Character::take_damage(float delta){
+    current_hp = current_hp - delta;
+    if (current_hp > max_hp)
+        current_hp = max_hp;
+    else if (current_hp <= 0){
+        current_hp = 0;
+        characters.erase(characters.begin() + target);
+    }
 }
 
 void DrawCharacters() {
