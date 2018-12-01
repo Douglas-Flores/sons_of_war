@@ -148,6 +148,11 @@ GLint bbox_max_uniform;
 
 void PassTurn();
 
+// Animação
+float attack_anim_melee_angle(float duration);
+void init_time(void);
+float get_delta_time(void);
+
 // Definimos uma estrutura que armazenará dados necessários para renderizar
 // cada objeto da cena virtual.
 struct SceneObject
@@ -207,6 +212,9 @@ bool g_UsePerspectiveProjection = true;
 
 // Variável que controla se o texto informativo será mostrado na tela.
 bool g_ShowInfoText = true;
+
+// Variável de tempo
+float old_time = 0.0f;
 
 // Variáveis que definem um programa de GPU (shaders). Veja função LoadShadersFromFiles().
 GLuint vertex_shader_id;
@@ -297,6 +305,7 @@ public:
     int role;
     Free_Camera camera;
     glm::vec4 facing_vector;
+    bool isAttacking = false;
 
     void attack();
     void init_attributes(int type);
@@ -1949,28 +1958,61 @@ void Character::draw() {
     if (role == GUARDIAN)
     {
         // Desenha a espada do guardiao
-        PushMatrix(model);
-            model = model * Matrix_Rotate_Y(angle)
-                          * Matrix_Translate(-0.1f, 0.07f, 0.0f)
-                          * Matrix_Scale(0.04f, 0.04f, 0.04f);
-            glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-            glUniform1i(object_id_uniform, team + 1);
-            DrawVirtualObject("hilt");
-            // Lâmina da espada
+        if (!isAttacking)
+        {
             PushMatrix(model);
-                model = model;
+                model = model * Matrix_Rotate_Y(angle)
+                              * Matrix_Translate(-0.1f, 0.07f, 0.0f)
+                              * Matrix_Scale(0.04f, 0.04f, 0.04f);
                 glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
                 glUniform1i(object_id_uniform, team + 1);
-                DrawVirtualObject("blade");
+                DrawVirtualObject("hilt");
+                // Lâmina da espada
+                PushMatrix(model);
+                    model = model;
+                    glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                    glUniform1i(object_id_uniform, team + 1);
+                    DrawVirtualObject("blade");
+                PopMatrix(model);
+                // Guarda da espada
+                PushMatrix(model);
+                    model = model;
+                    glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                    glUniform1i(object_id_uniform, team + 1);
+                    DrawVirtualObject("guard");
+                PopMatrix(model);
             PopMatrix(model);
-            // Guarda da espada
+        }
+        else
+        {
+            if (get_delta_time() >= 200)
+                isAttacking = false;
+
             PushMatrix(model);
-                model = model;
+                model = model * Matrix_Rotate_Y(angle)
+                              * Matrix_Rotate_Y(attack_anim_melee_angle(200))
+                              * Matrix_Translate(-0.1f, 0.07f, 0.0f)
+                              * Matrix_Rotate_X(M_PI_2)
+                              * Matrix_Scale(0.04f, 0.04f, 0.04f);
                 glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
                 glUniform1i(object_id_uniform, team + 1);
-                DrawVirtualObject("guard");
+                DrawVirtualObject("hilt");
+                // Lâmina da espada
+                PushMatrix(model);
+                    model = model;
+                    glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                    glUniform1i(object_id_uniform, team + 1);
+                    DrawVirtualObject("blade");
+                PopMatrix(model);
+                // Guarda da espada
+                PushMatrix(model);
+                    model = model;
+                    glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                    glUniform1i(object_id_uniform, team + 1);
+                    DrawVirtualObject("guard");
+                PopMatrix(model);
             PopMatrix(model);
-        PopMatrix(model);
+        }
 
         // Desenha o escudo do guardiao
         PushMatrix(model);
@@ -1985,22 +2027,48 @@ void Character::draw() {
     }
     else if (role == SPEARMAN)
     {
-        // Desenha a lança do lanceiro
-        PushMatrix(model);
-            model = model * Matrix_Rotate_Y(angle)
-                          * Matrix_Translate(0.1f, 0.15f, 0.0f)
-                          * Matrix_Scale(0.12f, 0.12f, 0.12f);
-            glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
-            glUniform1i(object_id_uniform, team + 1);
-            DrawVirtualObject("pole");
-
+        if (!isAttacking)
+        {
+            // Desenha a lança do lanceiro
             PushMatrix(model);
-                model = model;
+                model = model * Matrix_Rotate_Y(angle)
+                              * Matrix_Translate(0.12f, 0.15f, 0.0f)
+                              * Matrix_Scale(0.12f, 0.12f, 0.12f);
                 glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
                 glUniform1i(object_id_uniform, team + 1);
-                DrawVirtualObject("arm");
+                DrawVirtualObject("pole");
+
+                PushMatrix(model);
+                    model = model;
+                    glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                    glUniform1i(object_id_uniform, team + 1);
+                    DrawVirtualObject("arm");
+                PopMatrix(model);
             PopMatrix(model);
-        PopMatrix(model);
+        }
+        else
+        {
+            if (get_delta_time() >= 200)
+                isAttacking = false;
+            // Desenha a lança do lanceiro
+            PushMatrix(model);
+                model = model * Matrix_Rotate_Y(angle)
+                              * Matrix_Rotate_Y(attack_anim_melee_angle(200))
+                              * Matrix_Translate(0.2f, 0.15f, 0.12f)
+                              * Matrix_Rotate_X(M_PI_2)
+                              * Matrix_Scale(0.12f, 0.12f, 0.12f);
+                glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                glUniform1i(object_id_uniform, team + 1);
+                DrawVirtualObject("pole");
+
+                PushMatrix(model);
+                    model = model;
+                    glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
+                    glUniform1i(object_id_uniform, team + 1);
+                    DrawVirtualObject("arm");
+                PopMatrix(model);
+            PopMatrix(model);
+        }
     }
     else if (role == ARCHER)
     {
@@ -2078,6 +2146,8 @@ void Character::attack()
                     characters[i].take_damage(damage);
                     printf("character %d, hp %f\n", i, characters[i].current_hp);
                     remaining_actions--;
+                    isAttacking = true;
+                    init_time();
                     break;
                 }
             }
@@ -2421,4 +2491,33 @@ void PassTurn()
 
     lookat_camera.lookat = characters[active_character].position;
     lookat_camera.update_camera();
+}
+
+float attack_anim_melee_angle(float duration)
+{
+    float t;
+    float angle;
+    t = get_delta_time() / duration;
+    angle = 0;
+    //t = sin((M_PI/2)*(2*t-1))/2 + 0.5;
+
+    if (t <= 1)
+        angle = (2*t - 1)*M_PI_2;
+
+    return angle;
+}
+
+void init_time(void)
+{
+    old_time = (float) glfwGetTime();
+}
+
+float get_delta_time(void)
+{
+    float time;
+    time = (float) glfwGetTime();
+    /* Delta time em milisegundos. */
+    float delta_time = (time - old_time) * 1000.0;
+
+    return delta_time;
 }
