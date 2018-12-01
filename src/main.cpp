@@ -127,6 +127,7 @@ void TextRendering_ShowModelViewProjection(GLFWwindow* window, glm::mat4 project
 void TextRendering_ShowEulerAngles(GLFWwindow* window);
 void TextRendering_ShowProjection(GLFWwindow* window);
 void TextRendering_ShowFramesPerSecond(GLFWwindow* window);
+void TextRendering_ShowCharacterData(GLFWwindow* window);
 
 // Funções callback para comunicação com o sistema operacional e interação do
 // usuário. Veja mais comentários nas definições das mesmas, abaixo.
@@ -311,7 +312,7 @@ public:
 
     void attack();
     void init_attributes(int type);
-    void take_damage(float delta);
+    void take_damage(float delta, int alvo);
     void end_turn() {
         remaining_movement = max_movement;
         remaining_actions = max_actions;
@@ -675,16 +676,11 @@ int main(int argc, char* argv[])
         //glm::vec4 p_model(0.5f, 0.5f, 0.5f, 1.0f);
         //TextRendering_ShowModelViewProjection(window, projection, view, model, p_model);
 
-        // Imprimimos na tela os ângulos de Euler que controlam a rotação do
-        // terceiro cubo.
-        TextRendering_ShowEulerAngles(window);
-
-        // Imprimimos na informação sobre a matriz de projeção sendo utilizada.
-        TextRendering_ShowProjection(window);
-
         // Imprimimos na tela informação sobre o número de quadros renderizados
         // por segundo (frames per second).
         TextRendering_ShowFramesPerSecond(window);
+
+        TextRendering_ShowCharacterData(window);
 
         // O framebuffer onde OpenGL executa as operações de renderização não
         // é o mesmo que está sendo mostrado para o usuário, caso contrário
@@ -1461,15 +1457,6 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
     // Se o usuário apertar a tecla espaço, pulamos o turno.
     if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
         PassTurn();
-    /*{
-        g_AngleX = 0.0f;
-        g_AngleY = 0.0f;
-        g_AngleZ = 0.0f;
-        g_ForearmAngleX = 0.0f;
-        g_ForearmAngleZ = 0.0f;
-        g_TorsoPositionX = 0.0f;
-        g_TorsoPositionY = 0.0f;
-    }*/
 
     // Se o usuário apertar a tecla P, utilizamos projeção perspectiva.
     if (key == GLFW_KEY_P && action == GLFW_PRESS)
@@ -1595,6 +1582,19 @@ void TextRendering_ShowEulerAngles(GLFWwindow* window)
 
     char buffer[80];
     snprintf(buffer, 80, "Euler Angles rotation matrix = Z(%.2f)*Y(%.2f)*X(%.2f)\n", g_AngleZ, g_AngleY, g_AngleX);
+
+    TextRendering_PrintString(window, buffer, -1.0f+pad/10, -1.0f+2*pad/10, 1.0f);
+}
+
+void TextRendering_ShowCharacterData(GLFWwindow* window)
+{
+    float pad = TextRendering_LineHeight(window);
+
+    char buffer[80];
+    snprintf(buffer, 80, "Pontos de Vida: %.0f / %.0f \n Acoes %d / %d \n Deslocamento: %.2f / %.2f \n",
+            characters[active_character].current_hp, characters[active_character].max_hp,
+            characters[active_character].remaining_actions, characters[active_character].max_actions,
+            characters[active_character].remaining_movement, characters[active_character].max_movement);
 
     TextRendering_PrintString(window, buffer, -1.0f+pad/10, -1.0f+2*pad/10, 1.0f);
 }
@@ -2124,7 +2124,7 @@ void Character::draw() {
                * Matrix_Translate(projectile_position.x, projectile_position.y, projectile_position.z)
                * Matrix_Rotate_Z(0)
                * Matrix_Rotate_Y(M_PI_2 + acos(dotproduct(p2,p1)))
-               * Matrix_Scale(0.005f, 0.005f, 0.005f);
+               * Matrix_Scale(0.0025f, 0.0025f, 0.0025f);
         glUniformMatrix4fv(model_uniform, 1 , GL_FALSE , glm::value_ptr(model));
         glUniform1i(object_id_uniform, team + 1);
         DrawVirtualObject("arrow");
@@ -2142,7 +2142,6 @@ void Character::move()
 
         if (scenary.heigth(position) == scenary.heigth(future_place)){
             position.x += camera.speed*facing_vector.x;
-            position.y += camera.speed*facing_vector.y;  // não se mexe para cima ou para baixo
             position.z += camera.speed*facing_vector.z;
 
             remaining_movement -= camera.speed;
@@ -2150,6 +2149,17 @@ void Character::move()
             camera.position.z = position.z;
             lookat_camera.lookat = position;
             lookat_camera.update_camera();
+        }
+        else if (scenary.heigth(future_place) >= 0 && 4*(scenary.heigth(future_place) - scenary.heigth(position)) < remaining_movement){
+            float diff = abs(scenary.heigth(future_place) - scenary.heigth(position));
+            position.x += camera.speed*facing_vector.x;
+            position.z += camera.speed*facing_vector.z;
+            position.y = scenary.heigth(future_place);
+            remaining_movement -= 4*diff;
+            remaining_movement -= camera.speed;
+            camera.position.x = position.x;
+            camera.position.y = position.y;
+            camera.position.z = position.z;
         }
     }
 }
@@ -2194,7 +2204,7 @@ void Character::attack()
                 angle = acos(angle);
 
                 if (angle <= 0.2618){
-                    characters[i].take_damage(damage);
+                    characters[i].take_damage(damage, i);
                     printf("character %d, hp %f\n", i, characters[i].current_hp);
                     remaining_actions--;
                     isAttacking = true;
@@ -2207,13 +2217,13 @@ void Character::attack()
         }
 }
 
-void Character::take_damage(float delta){
+void Character::take_damage(float delta, int alvo){
     current_hp = current_hp - delta;
     if (current_hp > max_hp)
         current_hp = max_hp;
     else if (current_hp <= 0){
         current_hp = 0;
-        characters.erase(characters.begin() + target);
+        characters.erase(characters.begin() + alvo);
     }
 }
 
