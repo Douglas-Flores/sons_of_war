@@ -731,8 +731,8 @@ void LoadTextureImage(const char* filename)
     glGenSamplers(1, &sampler_id);
 
     // Veja slide 100 do documento "Aula_20_e_21_Mapeamento_de_Texturas.pdf"
-    glSamplerParameteri(sampler_id, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glSamplerParameteri(sampler_id, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glSamplerParameteri(sampler_id, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glSamplerParameteri(sampler_id, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
     // Parâmetros de amostragem da textura. Falaremos sobre eles em uma próxima aula.
     glSamplerParameteri(sampler_id, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -750,6 +750,8 @@ void LoadTextureImage(const char* filename)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB8, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
     glBindSampler(textureunit, sampler_id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 
     stbi_image_free(data);
 
@@ -1439,20 +1441,6 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod)
     //   Se apertar tecla shift+Z então g_AngleZ -= delta;
 
     float delta = 3.141592 / 16; // 22.5 graus, em radianos.
-
-    if (key == GLFW_KEY_X && action == GLFW_PRESS)
-    {
-        g_AngleX += (mod & GLFW_MOD_SHIFT) ? -delta : delta;
-    }
-
-    if (key == GLFW_KEY_Y && action == GLFW_PRESS)
-    {
-        g_AngleY += (mod & GLFW_MOD_SHIFT) ? -delta : delta;
-    }
-    if (key == GLFW_KEY_Z && action == GLFW_PRESS)
-    {
-        g_AngleZ += (mod & GLFW_MOD_SHIFT) ? -delta : delta;
-    }
 
     // Se o usuário apertar a tecla espaço, pulamos o turno.
     if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
@@ -2199,13 +2187,22 @@ void Character::attack()
             vec = characters[i].position - position;
             distance = norm(vec);
             if(distance <= range){
+                vec = glm::vec4(vec.x, 0.0f, vec.z, vec.w);
                 vec = normalize(vec);
                 angle = dotproduct(facing_vector, vec);
                 angle = acos(angle);
 
                 if (angle <= 0.2618){
-                    characters[i].take_damage(damage, i);
-                    printf("character %d, hp %f\n", i, characters[i].current_hp);
+                    if (role == ARCHER && characters[i].position.y < position.y)
+                    {
+                        characters[i].take_damage(2*damage, i);
+                        printf("character %d, hp %f | DOUBLE DAMAGE \n", i, characters[i].current_hp);
+                    }
+                    else
+                    {
+                        characters[i].take_damage(damage, i);
+                        printf("character %d, hp %f\n", i, characters[i].current_hp);
+                    }
                     remaining_actions--;
                     isAttacking = true;
                     target = i;
@@ -2377,10 +2374,10 @@ void Scenary::build(){
     // Definindo o tamanho do cenário
     land_size.x = (rand() % 75 + 25) * 0.04; // gera um número entre 25 e 100, depois escala por 0.04 para gerar um float de 1 a 4
     land_size.z = (rand() % 75 + 25) * 0.04;
-    if ( land_size.z > 1.77*land_size.x )
-        land_size.z = 1.77*land_size.x;
-    else if ( land_size.z <  0.5625*land_size.x )
-        land_size.z = 0.5625*land_size.x;
+    if ( land_size.z > 1.33*land_size.x )
+        land_size.z = 1.33*land_size.x;
+    else if ( land_size.z <  0.75*land_size.x )
+        land_size.z = 0.75*land_size.x;
 
     if( land_size.x < 2)
         land_size.y = land_size.x;

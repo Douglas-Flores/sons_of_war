@@ -68,7 +68,7 @@ void main()
     vec4 v = normalize(camera_position - p);
 
     // Vetor que define o sentido da fonte de luz em relação ao ponto atual.
-    vec4 l = normalize(vec4(1.0f, 1.0f, 0.0f, 0.0f));
+    vec4 l = normalize(vec4(4.0f, 4.0f, 3.5f, 0.0f));
 
     // Vetor que define o sentido da reflexão especular ideal.
     vec4 r = -l + 2*n*dot(n,l);
@@ -130,8 +130,10 @@ void main()
         // Top
         if (phi <= M_PI / 4 && phi2 <= M_PI / 4)
         {
-            U = (position_model.x - minx)/(maxx - minx);
-            V = (position_model.z - minz)/(maxz - minz);
+            /*U = (position_model.x - minx)/(maxx - minx);
+            V = (position_model.z - minz)/(maxz - minz);*/
+            U = position_model.x;
+            V = position_model.z;
             Kd = texture(TextureImage2, vec2(U,V)).rgba;
         }
         // Front
@@ -161,48 +163,72 @@ void main()
             V = (phi + M_PI_2) / M_PI;
             Kd = texture(TextureImage2, vec2(U,V)).rgba;
         }
-        Ks = vec4(0.0, 0.0, 0.0, 1.0);
+        Ks = vec4(1.0, 1.0, 1.0, 1.0);
         Ka = vec4(0.0, 0.5, 0.0, 1.0);
-        q = 0.0;
+        q = 64.0;
     }
     else if ( object_id == WATER )
     {
-        float minx = bbox_min.x;
-        float maxx = bbox_max.x;
+        float phi;
+        float phi2;
 
-        float miny = bbox_min.y;
-        float maxy = bbox_max.y;
+        // Vetor p partindo do centro até o ponto
+        vec4 p_model = position_model - vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        p_model = normalize(p_model);
+        // Vetor unitário do eixo y
+        vec4 up = vec4(0.0f, 1.0f, 0.0f, 0.0f);
+        // Vetor unitário eixo x
+        vec4 vecX = vec4(1.0f, 0.0f, 0.0f, 0.0f);
+        // Projeção do vetor p_model no plano xz
+        vec4 p_modelXZ = vec4(p_model.x, 0.0f, p_model.z, p_model.w);
+        p_modelXZ = normalize(p_modelXZ);
+        // Projeção do vetor p_model no plano xy
+        vec4 p_modelXY = vec4(p_model.x, p_model.y, 0.0f, p_model.w);
+        p_modelXY = normalize(p_modelXY);
+        // Projeção do vetor p_model no plano yz
+        vec4 p_modelYZ = vec4(0.0f, p_model.y, p_model.z, p_model.w);
+        p_modelYZ = normalize(p_modelYZ);
+        // Ângulos
+        phi = dot(p_modelXY, up);
+        phi = acos(phi);
+        phi2 = dot(p_modelYZ, up);
+        phi2 = acos(phi2);
 
-        float minz = bbox_min.z;
-        float maxz = bbox_max.z;
+        // Determinando a face
+        // Top
+        if (phi <= M_PI / 4 && phi2 <= M_PI / 4)
+        {
+            U = position_model.x;
+            V = position_model.z;
+            // Calculando normais
+            Kd = texture(TextureImage3, vec2(U,V)).rgba;
+            n.x = (Kd.x);
+            n.y = (Kd.z);
+            n.z = (Kd.y);
+            n.w = 0.0f;
+            n = normalize(n);
+        }
 
-        U = (position_world.x - minx)/(maxx - minx);
-        V = (position_world.z - minz)/(maxz - minz);
-
-        /*Kd = texture(TextureImage3, vec2(U,V)).rgb;
-        n.x = (Kd.x);
-        n.y = (Kd.y);
-        n.z = (Kd.z);
-        n.w = 0.0f;*/
-        //n = normalize(n);
-        Kd = vec4(0.05f, 0.45f, 0.8f, 0.01f);
+        //Kd = texture(TextureImage1, vec2(U,V)).rgba;
+        Kd = vec4(0.01f, 0.45f, 0.87f, 0.01f);
+        //Kd = vec4(Kd.x, Kd.z, Kd.y, 1.0f);
         Ks = vec4(0.5, 0.5, 0.5, 1.0f);
         Ka = vec4(0.05, 0.45, 0.8, 1.0);
-        q = 512.0;
+        q = 1024.0;
     }
     else if ( object_id == CHAR_TEAM_1)
     {
-        Kd = vec4(0.9,0.1,0.1,1.0);
-        Ks = vec4(0.0,0.0,0.0,1.0);
+        Kd = vec4(1.0,0.01,0.01,1.0);
+        Ks = vec4(0.5,0.5,0.5,1.0);
         Ka = vec4(0.9,0.1,0.1,1.0);
-        q = 0.0;
+        q = 128.0;
     }
     else if ( object_id == CHAR_TEAM_2)
     {
-        Kd = vec4(0.2,0.2,1.0,1.0);
-        Ks = vec4(0.0,0.0,0.0,1.0);
+        Kd = vec4(0.01,0.2,1.0,1.0);
+        Ks = vec4(0.5,0.5,0.5,1.0);
         Ka = vec4(0.2,0.2,1.0,1.0);
-        q = 0.0;
+        q = 128.0;
     }
     else // Objeto desconhecido = preto
     {
@@ -246,6 +272,7 @@ void main()
          color = pow(color, vec4(1.0,1.0,1.0,1.0)/1.2);
          color.a = 0.1;
     }
+    color.a = 0.1;
 
 }
 
