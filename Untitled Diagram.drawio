@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-11-07T21:43:32.103Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="VoFxepAlLL0TbG9rYWbq" version="15.7.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-07T21:47:39.156Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="AJdnNYV7BcztA472t4UX" version="15.7.0" type="github">
   <diagram id="9cvskoMtvE0veRUgXZrD" name="Page-1">
     <mxGraphModel dx="2889" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -30,14 +30,20 @@
         <mxCell id="dtXwvVLtn8R11qcHJwp9-7" value="&lt;font color=&quot;#ffffff&quot;&gt;Os Piratas estão com a Sildarine de Shar&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=0;spacingRight=0;strokeColor=#007FFF;spacing=11;" parent="1" vertex="1">
           <mxGeometry x="1684" y="198" width="139" height="50" as="geometry" />
         </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-1" target="Mus7yZhnYwH2cR40hnjs-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-1" value="&lt;font color=&quot;#ffffff&quot;&gt;A Sildarine de Shar foi roubada pelos &quot;guardiões&quot;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
           <mxGeometry x="1684" y="278" width="139" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-2" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dtXwvVLtn8R11qcHJwp9-7" target="Mus7yZhnYwH2cR40hnjs-1">
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-2" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#1F66B8;" edge="1" parent="1" source="dtXwvVLtn8R11qcHJwp9-7" target="Mus7yZhnYwH2cR40hnjs-1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1623" y="458" as="sourcePoint" />
             <mxPoint x="1673" y="408" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-3" target="Mus7yZhnYwH2cR40hnjs-87">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-3" value="&lt;font color=&quot;#ffffff&quot;&gt;Os Filhos de Sihiel estão na ilha em busca da Sildarine de Shar&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
           <mxGeometry x="1684" y="370" width="139" height="80" as="geometry" />
@@ -65,6 +71,9 @@
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-12" value="&lt;font color=&quot;#ffffff&quot;&gt;Mezro desapareceu&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
           <mxGeometry x="2500" y="615" width="139" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-13" target="Mus7yZhnYwH2cR40hnjs-89">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-13" value="&lt;font color=&quot;#ffffff&quot;&gt;Os elfos tomaram Omu&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
           <mxGeometry x="1684" y="685" width="139" height="50" as="geometry" />
@@ -253,11 +262,20 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-86" value="Mormesk" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;shadow=0;glass=0;dashed=1;labelBackgroundColor=none;sketch=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="2640" y="129" width="110" height="40" as="geometry" />
         </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-87" target="Mus7yZhnYwH2cR40hnjs-88">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-87" value="&lt;font color=&quot;#ffffff&quot;&gt;Os Elfos antigos já estiveram aqui&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
           <mxGeometry x="1684" y="485" width="139" height="75" as="geometry" />
         </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-88" target="Mus7yZhnYwH2cR40hnjs-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-88" value="&lt;font color=&quot;#ffffff&quot;&gt;Os elfos dominaram a Ilha&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
           <mxGeometry x="1684" y="600" width="139" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-89" target="Mus7yZhnYwH2cR40hnjs-90">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-89" value="&lt;font color=&quot;#ffffff&quot;&gt;Os elfos guardaram a Sildarine de Shar na ilha&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
           <mxGeometry x="1684" y="770" width="139" height="60" as="geometry" />
@@ -271,20 +289,23 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-92" value="3" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
           <mxGeometry x="1680" y="362" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-93" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1700" y="290" width="20" height="20" as="geometry" />
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-93" value="4" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="478" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-94" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1710" y="300" width="20" height="20" as="geometry" />
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-94" value="5" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="593" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-95" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1720" y="310" width="20" height="20" as="geometry" />
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-95" value="6" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="679" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-96" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1730" y="320" width="20" height="20" as="geometry" />
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-96" value="7" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="762" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-97" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1550" y="605" width="20" height="20" as="geometry" />
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-97" value="8" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="864" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-107" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;dashed=1;labelBackgroundColor=none;sketch=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=3;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1654" y="119" width="196" height="841" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
