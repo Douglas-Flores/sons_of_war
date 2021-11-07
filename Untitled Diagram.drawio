@@ -1,1 +1,67 @@
-<mxfile host="app.diagrams.net" modified="2021-11-07T18:31:37.636Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="AjN_fWrKNN0p0eBz6ZSX" version="15.7.0" type="github"><diagram id="9cvskoMtvE0veRUgXZrD" name="Page-1">7VdNc9sgEP01OrZjhK0ox8RJmuk0nU490yZHDCuJCRYOwpbcX18woA/LmaRtPi71RdoHu2LfWxYc4fmq+aTIuriRDEQUT1gT4YsojuNJEpuHRXYOSSdTB+SKMwehDljwX+DBiUc3nEE1mKilFJqvhyCVZQlUDzCilKyH0zIphl9dkxxGwIISMUZ/cqYLn0V80uHXwPMifBklp25kRcJkn0lVECbrHoQvIzxXUmr3tmrmICx5gRfnd/XIaLswBaV+jgPTt/X2xxddpt8ReqDXn+v16QcfZUvExif8lWwyFc1xdIZyLv3S9S7woeSmZGBDogif1wXXsFgTakdrUwEGK/RK+OGMCzGXQqq9L2YE0owavNJK3kNvJKEpLDM7EkiaWOMeNC28kQtSVf7dLxqUhuZRNlDLsSlOkCvQamemeAccZPF1OfVm3YmMwpSiJ3CYR3xd5W3kjnrz4tn/AyXikRJnJSMlkzYtEMQ8FiC25K0VeQWuW2LfjWw8IntEK5TszPYPY1FbepwOmexotxVpmFC7W2t8nAXzrj920QysXbAarntuxrrz8e1752SN4OOWCmzUuA70MOnIjaLw9PbXROWgnyrOsb49/WZH5AuYMuWr+Xa43GOa+i98k9wk8mj5tGdDCOHS9F79DngQaDodBsLJQSDHwyjQvsTatP++6majqgs69cpOCHO0wdM7mVRrd95lvLFlOGyd/W4pyBLEOaH3+b5mwyYvZQmHTfawPcwgZdNj7SGNlzhJXqY9TPFQlpNxdzjWHOLXag7JSKYj3eG/TGj2zjqdHGniidCWH7nf9rQlInnY2GuWoQFn+18fSnL7vOGV3l97ThWXVYhkFuaCuUn/dvi+iPRmNVdkxYVV4dpcCEBzSsY1ga6S5Dx9GeURStFbXZaM2V2JXePt/ljgy98=</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-11-07T18:58:01.983Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="TTxWTNPcLUlkELxtLfj1" version="15.7.0" type="github">
+  <diagram id="9cvskoMtvE0veRUgXZrD" name="Page-1">
+    <mxGraphModel dx="2062" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dtXwvVLtn8R11qcHJwp9-1" value="Naufrágio" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=0;sketch=0;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="320" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dtXwvVLtn8R11qcHJwp9-2" value="Andando pela Selva" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="320" y="120" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dtXwvVLtn8R11qcHJwp9-3" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="dtXwvVLtn8R11qcHJwp9-1" target="dtXwvVLtn8R11qcHJwp9-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="210" as="sourcePoint" />
+            <mxPoint x="440" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dtXwvVLtn8R11qcHJwp9-5" value="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="430" y="70" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dtXwvVLtn8R11qcHJwp9-6" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="430" y="150" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dtXwvVLtn8R11qcHJwp9-7" value="&lt;font color=&quot;#ffffff&quot;&gt;Os Piratas estão com a Sildarine de Shar&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;" parent="1" vertex="1">
+          <mxGeometry x="1181" y="40" width="139" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-1" value="&lt;font color=&quot;#ffffff&quot;&gt;A Sildarine de Shar foi roubada pelos &quot;guardiões&quot;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;" vertex="1" parent="1">
+          <mxGeometry x="1181" y="160" width="139" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-2" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dtXwvVLtn8R11qcHJwp9-7" target="Mus7yZhnYwH2cR40hnjs-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1120" y="300" as="sourcePoint" />
+            <mxPoint x="1170" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-3" value="&lt;font color=&quot;#ffffff&quot;&gt;Os Filhos de Sihiel estão na ilha em busca da Sildarine de Shar&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;" vertex="1" parent="1">
+          <mxGeometry x="1181" y="280" width="139" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-4" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-1" target="Mus7yZhnYwH2cR40hnjs-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1120" y="290" as="sourcePoint" />
+            <mxPoint x="1170" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-5" value="&lt;font color=&quot;#ffffff&quot;&gt;Os yuan-ti estão atrás da Sildarine de Shar também&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="210" width="139" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-6" value="&lt;font color=&quot;#ffffff&quot;&gt;Os Ubtao e a lenda de Dendar&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="120" width="139" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-7" value="&lt;font color=&quot;#ffffff&quot;&gt;Uma grande civilização de yuan-ti (Hss&#39;tssa) existiu&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="300" width="139" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-8" value="&lt;font color=&quot;#ffffff&quot;&gt;Shar foi&amp;nbsp;até a ilha cooptar os yuan-ti&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;" vertex="1" parent="1">
+          <mxGeometry x="810" y="400" width="139" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-9" value="&lt;font color=&quot;#ffffff&quot;&gt;Os yuan-ti se tornaram povo cobra&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="470" width="139" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-10" value="&lt;font color=&quot;#ffffff&quot;&gt;Os barae derrotaram o império Hss&#39;tssa&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;" vertex="1" parent="1">
+          <mxGeometry x="1042" y="520" width="139" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
