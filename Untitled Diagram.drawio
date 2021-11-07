@@ -1,11 +1,11 @@
-<mxfile host="app.diagrams.net" modified="2021-11-07T21:47:39.156Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="AJdnNYV7BcztA472t4UX" version="15.7.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-07T21:52:10.513Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="m-2KRFuiUh6_Ylxz7aV5" version="15.7.0" type="github">
   <diagram id="9cvskoMtvE0veRUgXZrD" name="Page-1">
     <mxGraphModel dx="2889" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="dtXwvVLtn8R11qcHJwp9-1" value="Naufrágio" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=0;sketch=0;glass=0;" parent="1" vertex="1">
-          <mxGeometry x="320" y="40" width="120" height="40" as="geometry" />
+          <mxGeometry x="40" y="40" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="1" source="dtXwvVLtn8R11qcHJwp9-2" target="Mus7yZhnYwH2cR40hnjs-17">
           <mxGeometry relative="1" as="geometry" />
@@ -15,16 +15,16 @@
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dtXwvVLtn8R11qcHJwp9-2" target="Mus7yZhnYwH2cR40hnjs-29">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="520" y="140" as="targetPoint" />
+            <mxPoint x="240" y="140" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="dtXwvVLtn8R11qcHJwp9-2" value="Andando pela Selva" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="320" y="120" width="120" height="40" as="geometry" />
+          <mxGeometry x="40" y="120" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="dtXwvVLtn8R11qcHJwp9-3" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=#6C8EBF;" parent="1" source="dtXwvVLtn8R11qcHJwp9-1" target="dtXwvVLtn8R11qcHJwp9-2" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="320" y="210" as="sourcePoint" />
-            <mxPoint x="440" y="360" as="targetPoint" />
+            <mxPoint x="40" y="210" as="sourcePoint" />
+            <mxPoint x="160" y="360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="dtXwvVLtn8R11qcHJwp9-7" value="&lt;font color=&quot;#ffffff&quot;&gt;Os Piratas estão com a Sildarine de Shar&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=0;spacingRight=0;strokeColor=#007FFF;spacing=11;" parent="1" vertex="1">
@@ -49,28 +49,28 @@
           <mxGeometry x="1684" y="370" width="139" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-5" value="&lt;font color=&quot;#ffffff&quot;&gt;Os yuan-ti estão atrás da Sildarine de Shar também&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
-          <mxGeometry x="2137" y="400" width="139" height="80" as="geometry" />
+          <mxGeometry x="2127" y="290" width="139" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-6" value="&lt;font color=&quot;#ffffff&quot;&gt;Os Ubtao e a lenda de Dendar&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
-          <mxGeometry x="2137" y="310" width="139" height="60" as="geometry" />
+          <mxGeometry x="2127" y="200" width="139" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-7" value="&lt;font color=&quot;#ffffff&quot;&gt;Uma grande civilização de yuan-ti (Hss&#39;tssa) existiu&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
-          <mxGeometry x="2137" y="510" width="139" height="60" as="geometry" />
+          <mxGeometry x="2127" y="400" width="139" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-8" value="&lt;font color=&quot;#ffffff&quot;&gt;Shar foi&amp;nbsp;até a ilha cooptar os yuan-ti&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
-          <mxGeometry x="2137" y="590" width="139" height="50" as="geometry" />
+          <mxGeometry x="2127" y="480" width="139" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-9" value="&lt;font color=&quot;#ffffff&quot;&gt;Os yuan-ti se tornaram povo cobra&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
-          <mxGeometry x="2137" y="660" width="139" height="50" as="geometry" />
+          <mxGeometry x="2127" y="550" width="139" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-10" value="&lt;font color=&quot;#ffffff&quot;&gt;Os barae derrotaram o império Hss&#39;tssa&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
-          <mxGeometry x="2370" y="430" width="139" height="50" as="geometry" />
+          <mxGeometry x="2127" y="629" width="139" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-11" value="&lt;font color=&quot;#ffffff&quot;&gt;Os eshowe viraram as costas para os Ubtao e Alisandra os deixou&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
           <mxGeometry x="2550" y="510" width="139" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-12" value="&lt;font color=&quot;#ffffff&quot;&gt;Mezro desapareceu&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
-          <mxGeometry x="2500" y="615" width="139" height="50" as="geometry" />
+          <mxGeometry x="2127" y="720" width="139" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-13" target="Mus7yZhnYwH2cR40hnjs-89">
           <mxGeometry relative="1" as="geometry" />
@@ -82,7 +82,7 @@
           <mxGeometry x="2680" y="615" width="139" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-15" value="&lt;font color=&quot;#ffffff&quot;&gt;Ras Nsi foi preso por 1500 anos&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
-          <mxGeometry x="2500" y="685" width="139" height="60" as="geometry" />
+          <mxGeometry x="2127" y="800" width="139" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-17" target="Mus7yZhnYwH2cR40hnjs-62">
           <mxGeometry relative="1" as="geometry" />
@@ -91,7 +91,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-17" value="Tanaroa" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="-80" y="200" width="120" height="40" as="geometry" />
+          <mxGeometry x="-360" y="200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-19" target="Mus7yZhnYwH2cR40hnjs-36">
           <mxGeometry relative="1" as="geometry" />
@@ -100,27 +100,27 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-19" value="Destroços do Narwhall" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="840" y="200" width="120" height="40" as="geometry" />
+          <mxGeometry x="560" y="200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-23" value="Libertália" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="-160" y="480" width="120" height="40" as="geometry" />
+          <mxGeometry x="-440" y="480" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;dashed=1;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#6C8EBF;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-25" target="Mus7yZhnYwH2cR40hnjs-26">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="30" y="440" as="targetPoint" />
+            <mxPoint x="-250" y="440" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-25" target="Mus7yZhnYwH2cR40hnjs-22">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-25" value="Acampamento Pirata" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="-80" y="320" width="120" height="40" as="geometry" />
+          <mxGeometry x="-360" y="320" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-26" value="Yellyark" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry y="440" width="120" height="40" as="geometry" />
+          <mxGeometry x="-280" y="440" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-27" value="Shilku" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="480" y="440" width="120" height="40" as="geometry" />
+          <mxGeometry x="200" y="440" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#FF0080;dashed=1;dashPattern=1 2;strokeWidth=3;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-28" target="Mus7yZhnYwH2cR40hnjs-52">
           <mxGeometry relative="1" as="geometry" />
@@ -135,117 +135,117 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-28" value="Dedo de Fogo #1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;strokeWidth=3;" vertex="1" parent="1">
-          <mxGeometry x="320" y="200" width="120" height="40" as="geometry" />
+          <mxGeometry x="40" y="200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-29" value="Porto Castigliar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="600" y="200" width="120" height="40" as="geometry" />
+          <mxGeometry x="320" y="200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-30" value="Sheirtalar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="160" y="440" width="120" height="40" as="geometry" />
+          <mxGeometry x="-120" y="440" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-31" value="Mezro" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="753" y="880" width="120" height="40" as="geometry" />
+          <mxGeometry x="473" y="880" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-32" value="Reduto dos Animais Feéricos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="680" y="1040" width="120" height="40" as="geometry" />
+          <mxGeometry x="400" y="1040" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-33" value="Assentamento Phanaton" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="650" y="1120" width="120" height="40" as="geometry" />
+          <mxGeometry x="370" y="1120" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-34" value="Covil dos Reptilianos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="1003" y="1060" width="120" height="40" as="geometry" />
+          <mxGeometry x="723" y="1060" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-35" value="Caverna dos Babuínos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="320" y="440" width="120" height="40" as="geometry" />
+          <mxGeometry x="40" y="440" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-36" value="Nangalore" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="760" y="320" width="120" height="40" as="geometry" />
+          <mxGeometry x="480" y="320" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-37" value="Coração de Bagwunagijik" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="1243" y="1120" width="120" height="40" as="geometry" />
+          <mxGeometry x="880" y="200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-38" value="Ponte para o Planalto Central" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;spacingLeft=5;spacingRight=5;" vertex="1" parent="1">
-          <mxGeometry x="1180" y="850" width="120" height="40" as="geometry" />
+          <mxGeometry x="900" y="850" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-39" value="Kir Sabal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="1160" y="680" width="120" height="40" as="geometry" />
+          <mxGeometry x="880" y="680" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-40" value="Dungrunglung" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="1360" y="700" width="120" height="40" as="geometry" />
+          <mxGeometry x="1080" y="700" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-41" value="Orolunga" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="180" y="670" width="120" height="40" as="geometry" />
+          <mxGeometry x="-100" y="670" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-42" value="Ehecatl" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="40" y="730" width="120" height="40" as="geometry" />
+          <mxGeometry x="-240" y="730" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-43" value="Mbala" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="340" y="700" width="120" height="40" as="geometry" />
+          <mxGeometry x="60" y="700" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-44" value="Covil do Dragão" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="550" y="760" width="120" height="40" as="geometry" />
+          <mxGeometry x="270" y="760" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-45" value="Baía da Tartaruga" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="210" y="740" width="120" height="40" as="geometry" />
+          <mxGeometry x="-70" y="740" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-46" value="Ossos do Agulha" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="920" y="320" width="120" height="40" as="geometry" />
+          <mxGeometry x="640" y="320" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-47" value="Covil dos Trogloditas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="983" y="1180" width="120" height="40" as="geometry" />
+          <mxGeometry x="703" y="1180" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-48" value="Covil dos Ogros" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="753" y="1200" width="120" height="40" as="geometry" />
+          <mxGeometry x="473" y="1200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#FF0080;strokeWidth=3;dashed=1;dashPattern=1 2;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-52" target="Mus7yZhnYwH2cR40hnjs-30">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#FF0080;dashed=1;dashPattern=1 2;strokeWidth=3;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-52" target="Mus7yZhnYwH2cR40hnjs-35">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="400" y="430" as="targetPoint" />
+            <mxPoint x="120" y="430" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=1 2;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#FF0080;strokeWidth=3;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-52" target="Mus7yZhnYwH2cR40hnjs-27">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-52" value="Pico da Chama" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;strokeWidth=3;" vertex="1" parent="1">
-          <mxGeometry x="320" y="320" width="120" height="40" as="geometry" />
+          <mxGeometry x="40" y="320" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-59" value="Mormesk #1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="753" y="940" width="120" height="40" as="geometry" />
+          <mxGeometry x="473" y="940" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-60" value="Mormesk #2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="1389" y="980" width="120" height="40" as="geometry" />
+          <mxGeometry x="1109" y="980" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-61" value="Mormesk #3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="1033" y="940" width="120" height="40" as="geometry" />
+          <mxGeometry x="753" y="940" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-62" value="Poço de Betume" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="80" y="320" width="120" height="40" as="geometry" />
+          <mxGeometry x="-200" y="320" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-22" value="Covil das Aranhas d&#39;Água" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6D0DE;strokeColor=#CDA2BE;dashed=1;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="-160" y="440" width="120" height="40" as="geometry" />
+          <mxGeometry x="-440" y="440" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-73" value="&lt;font color=&quot;#ffffff&quot;&gt;Rastros de Yuan-ti&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#1F66B8;spacingLeft=11;spacingRight=11;strokeColor=#007FFF;" vertex="1" parent="1">
-          <mxGeometry x="2137" y="740" width="139" height="50" as="geometry" />
+          <mxGeometry x="2127" y="986" width="139" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dtXwvVLtn8R11qcHJwp9-6" value="10" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" parent="1" vertex="1">
-          <mxGeometry x="2130" y="734" width="20" height="20" as="geometry" />
+          <mxGeometry x="2120" y="980" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-74" value="10" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#1F66B8;strokeColor=#007FFF;rounded=1;spacingLeft=11;spacingRight=11;fontColor=#FFFFFF;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="710" y="230" width="20" height="20" as="geometry" />
+          <mxGeometry x="430" y="230" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-77" value="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
           <mxGeometry x="1680" y="190" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-78" value="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#1F66B8;strokeColor=#007FFF;rounded=1;spacingLeft=11;spacingRight=11;fontColor=#FFFFFF;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="430" y="70" width="20" height="20" as="geometry" />
+          <mxGeometry x="150" y="70" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-79" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
           <mxGeometry x="1680" y="270" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-81" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#1F66B8;strokeColor=#007FFF;rounded=1;spacingLeft=11;spacingRight=11;fontColor=#FFFFFF;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="-50" y="510" width="20" height="20" as="geometry" />
+          <mxGeometry x="-330" y="510" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-82" value="Linha Élfica" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;shadow=0;glass=0;dashed=1;labelBackgroundColor=none;sketch=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="1684" y="129" width="126" height="40" as="geometry" />
@@ -306,6 +306,9 @@
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-107" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;dashed=1;labelBackgroundColor=none;sketch=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=3;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="1654" y="119" width="196" height="841" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-108" value="3" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#1F66B8;strokeColor=#007FFF;rounded=1;spacingLeft=11;spacingRight=11;fontColor=#FFFFFF;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;strokeWidth=2;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="990" y="230" width="20" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
