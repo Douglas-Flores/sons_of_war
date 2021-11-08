@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-11-08T00:16:29.510Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="1E4GFJM4gX0Fgpm4lMew" version="15.7.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-08T00:47:05.907Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="niXRu2e4QbamRJhgXt1J" version="15.7.0" type="github">
   <diagram id="9cvskoMtvE0veRUgXZrD" name="Page-1">
-    <mxGraphModel dx="2889" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3716" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -182,14 +182,20 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-31" value="Mezro" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="473" y="880" width="120" height="40" as="geometry" />
         </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-172" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#000000;strokeColor=#7EA6E0;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-32" target="Mus7yZhnYwH2cR40hnjs-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-173" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#000000;strokeColor=#7EA6E0;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-33" target="Mus7yZhnYwH2cR40hnjs-169">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-32" value="Reduto dos Animais Feéricos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="400" y="1040" width="120" height="40" as="geometry" />
+          <mxGeometry x="-680" y="200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-33" value="Assentamento Phanaton" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="370" y="1120" width="120" height="40" as="geometry" />
+          <mxGeometry x="-960" y="200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-34" value="Covil dos Reptilianos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="723" y="1060" width="120" height="40" as="geometry" />
+          <mxGeometry x="-760" y="320" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-35" value="Caverna dos Babuínos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="40" y="440" width="120" height="40" as="geometry" />
@@ -203,7 +209,7 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-38" value="Ponte para o Planalto Central" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;spacingLeft=5;spacingRight=5;" vertex="1" parent="1">
           <mxGeometry x="900" y="850" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-39" value="Kir Sabal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-39" value="Tir Sabal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="360" y="440" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-40" value="Dungrunglung" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -216,7 +222,7 @@
           <mxGeometry x="-240" y="730" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-43" value="Mbala" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="60" y="700" width="120" height="40" as="geometry" />
+          <mxGeometry x="1040" y="200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-44" value="Covil do Dragão" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="270" y="760" width="120" height="40" as="geometry" />
@@ -228,10 +234,10 @@
           <mxGeometry x="790" y="320" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-47" value="Covil dos Trogloditas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="703" y="1180" width="120" height="40" as="geometry" />
+          <mxGeometry x="358" y="1050" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-48" value="Covil dos Ogros" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="473" y="1200" width="120" height="40" as="geometry" />
+          <mxGeometry x="200" y="1050" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#FF0080;strokeWidth=3;dashed=1;dashPattern=1 2;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-52" target="Mus7yZhnYwH2cR40hnjs-30">
           <mxGeometry relative="1" as="geometry" />
@@ -462,6 +468,12 @@
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-167" value="7" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#E3C8BC;strokeColor=#A15745;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
           <mxGeometry x="1894.5" y="702" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-169" value="Covil das Araneas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-960" y="322" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-174" value="Podem dar rumores e odeiam as araneas" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=0;glass=0;dashed=1;labelBackgroundColor=none;sketch=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="-985" y="150" width="170" height="48" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
