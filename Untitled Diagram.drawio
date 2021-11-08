@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-11-08T05:43:52.546Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="cW3D96ZtosJ08w61kf83" version="15.7.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-08T05:52:22.892Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="hxPqDoNiXvJhzexQeUg_" version="15.7.0" type="github">
   <diagram id="9cvskoMtvE0veRUgXZrD" name="Page-1">
     <mxGraphModel dx="3372" dy="670" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -132,8 +132,14 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;fontFamily=Helvetica;fontColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-19" target="Mus7yZhnYwH2cR40hnjs-46">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-238" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;fontFamily=Helvetica;fontSize=11;fontColor=#FFFFFF;endArrow=classic;strokeColor=#6C8EBF;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-19" target="Mus7yZhnYwH2cR40hnjs-37">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-238" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;dashed=1;fontFamily=Helvetica;fontSize=11;fontColor=#FFFFFF;endArrow=classic;strokeColor=#6C8EBF;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-19" target="Mus7yZhnYwH2cR40hnjs-37">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="220" />
+              <mxPoint x="950" y="400" />
+              <mxPoint x="890" y="400" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-19" value="Destroços do Narwhall" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="720" y="200" width="120" height="40" as="geometry" />
@@ -232,10 +238,10 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-36" value="Nangalore" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="640" y="320" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-237" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=1 1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=none;startFill=0;endArrow=halfCircle;endFill=0;strokeColor=#CDA2BE;strokeWidth=3;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-37" target="Mus7yZhnYwH2cR40hnjs-31">
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-237" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=1 1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=none;startFill=0;endArrow=halfCircle;endFill=0;strokeColor=#CDA2BE;strokeWidth=3;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-37" target="Mus7yZhnYwH2cR40hnjs-31">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="860" y="400" />
+              <mxPoint x="830" y="400" />
               <mxPoint x="700" y="400" />
             </Array>
           </mxGeometry>
@@ -264,6 +270,14 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-184" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#000000;strokeColor=#7EA6E0;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-43" target="Mus7yZhnYwH2cR40hnjs-41">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-260" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=none;startFill=0;endArrow=halfCircle;endFill=0;strokeColor=#CDA2BE;strokeWidth=3;dashed=1;dashPattern=1 1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-43" target="Mus7yZhnYwH2cR40hnjs-37">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="940" y="460" />
+              <mxPoint x="940" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-43" value="Mbala" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="961" y="440.25" width="120" height="40" as="geometry" />
         </mxCell>
@@ -275,6 +289,14 @@
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-44" value="Covil do Dragão" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="-680" y="440" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-254" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#000000;startArrow=none;endArrow=classic;strokeColor=#7EA6E0;strokeWidth=1;dashed=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-45" target="Mus7yZhnYwH2cR40hnjs-33">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-1140" y="420" />
+              <mxPoint x="-1140" y="220" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-45" value="Baía da Tartaruga" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="-1040" y="400" width="120" height="40" as="geometry" />
@@ -548,8 +570,11 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-181" value="Mormesk #2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="680" y="880" width="120" height="40" as="geometry" />
         </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-258" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=none;endArrow=classic;strokeColor=#7EA6E0;strokeWidth=1;dashed=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-182" target="Mus7yZhnYwH2cR40hnjs-211">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-182" value="Ponte para o Planalto Central" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;spacingLeft=5;spacingRight=5;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="1000" y="880" width="120" height="40" as="geometry" />
+          <mxGeometry x="200" y="721" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-185" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;dashed=1;labelBackgroundColor=none;sketch=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=2;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="1160" y="600" width="400" height="200" as="geometry" />
@@ -641,21 +666,19 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-219" value="Caverna dos neandertais" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="-960" y="320" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-236" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;dashPattern=1 1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=halfCircle;startFill=0;endArrow=none;endFill=0;strokeColor=#CDA2BE;strokeWidth=3;fillColor=#fff2cc;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-226">
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-257" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=none;endArrow=none;strokeColor=#7EA6E0;strokeWidth=1;dashed=1;endFill=0;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-226">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="840" y="680" as="targetPoint" />
+            <mxPoint x="850" y="680" as="targetPoint" />
             <Array as="points">
               <mxPoint x="1021" y="680" />
-              <mxPoint x="850" y="680" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-226" value="Puzzle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="961" y="480.25" width="120" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-235" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=halfCircle;startFill=0;endArrow=halfCircle;endFill=0;strokeColor=#CDA2BE;strokeWidth=3;fillColor=#fff2cc;entryX=0.5;entryY=0;entryDx=0;entryDy=0;sketch=0;shadow=0;edgeStyle=orthogonalEdgeStyle;dashPattern=1 1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-227" target="Mus7yZhnYwH2cR40hnjs-211">
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-255" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=none;endArrow=classic;strokeColor=#7EA6E0;strokeWidth=1;dashed=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-227" target="Mus7yZhnYwH2cR40hnjs-211">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="100" y="800" as="targetPoint" />
             <Array as="points">
               <mxPoint x="695" y="680" />
               <mxPoint x="100" y="680" />
@@ -665,14 +688,8 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-227" value="Puzzle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="640" y="480" width="110" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-234" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;dashPattern=1 1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=halfCircle;startFill=0;endArrow=none;endFill=0;strokeColor=#CDA2BE;strokeWidth=3;fillColor=#fff2cc;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-228">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="100" y="680" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="-65" y="680" />
-              <mxPoint x="100" y="680" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-259" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=none;endArrow=classic;strokeColor=#7EA6E0;strokeWidth=1;dashed=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-228" target="Mus7yZhnYwH2cR40hnjs-211">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-228" value="Puzzle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="-120" y="480" width="110" height="20" as="geometry" />
@@ -689,12 +706,11 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-232" value="4" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#1F66B8;strokeColor=#007FFF;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;rounded=1;fontColor=#FFFFFF;spacingLeft=11;spacingRight=11;" vertex="1" parent="1">
           <mxGeometry x="150" y="830" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-241" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;shadow=0;dashed=1;dashPattern=1 1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=halfCircle;startFill=0;endArrow=none;endFill=0;strokeColor=#CDA2BE;strokeWidth=3;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-239">
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-256" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=none;endArrow=none;strokeColor=#7EA6E0;strokeWidth=1;dashed=1;endFill=0;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-239">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="690" y="680" as="targetPoint" />
+            <mxPoint x="700" y="680" as="targetPoint" />
             <Array as="points">
               <mxPoint x="845" y="680" />
-              <mxPoint x="700" y="680" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -702,10 +718,10 @@
           <mxGeometry x="800" y="478" width="90" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-243" value="&lt;font color=&quot;#ffffff&quot;&gt;Ras Nsi quer trazer Dendar de volta&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#f0a30a;spacingLeft=11;spacingRight=11;strokeColor=#BD7000;fontColor=#000000;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="2407" y="603" width="139" height="50" as="geometry" />
+          <mxGeometry x="2407" y="600" width="139" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-244" value="5" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="2400" y="595" width="20" height="20" as="geometry" />
+          <mxGeometry x="2400" y="592" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-245" value="5" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#f0a30a;strokeColor=#BD7000;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="1191" y="550" width="20" height="20" as="geometry" />
