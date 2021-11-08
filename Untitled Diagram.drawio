@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-11-08T05:27:49.647Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="bBcYqhKD21WRORrQbeQb" version="15.7.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-08T05:41:07.031Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="NEqU1EQBXVpeWxZgM-Wv" version="15.7.0" type="github">
   <diagram id="9cvskoMtvE0veRUgXZrD" name="Page-1">
-    <mxGraphModel dx="3716" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3372" dy="670" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -100,7 +100,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-12" value="&lt;font color=&quot;#ffffff&quot;&gt;Mezro desapareceu&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#008a00;spacingLeft=11;spacingRight=11;strokeColor=#005700;fontColor=#ffffff;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="2127" y="834" width="139" height="50" as="geometry" />
+          <mxGeometry x="2127" y="830" width="139" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;strokeColor=#1F66B8;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-13" target="Mus7yZhnYwH2cR40hnjs-89">
           <mxGeometry relative="1" as="geometry" />
@@ -411,7 +411,7 @@
           <mxGeometry x="2120" y="611" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-116" value="8" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="2120" y="824" width="20" height="20" as="geometry" />
+          <mxGeometry x="2120" y="820" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-120" value="7" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
           <mxGeometry x="2120" y="731" width="20" height="20" as="geometry" />
@@ -540,10 +540,10 @@
           <mxGeometry x="1160" y="600" width="140" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-188" value="4" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1180" y="631" width="20" height="20" as="geometry" />
+          <mxGeometry x="1290" y="665" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-189" value="5" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1221" y="633" width="20" height="20" as="geometry" />
+          <mxGeometry x="1400" y="620" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-190" value="6" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
           <mxGeometry x="1260" y="633" width="20" height="20" as="geometry" />
@@ -555,10 +555,10 @@
           <mxGeometry x="1350" y="633" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-193" value="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#E3C8BC;strokeColor=#A15745;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1180" y="690" width="20" height="20" as="geometry" />
+          <mxGeometry x="1330" y="719" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-194" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#E3C8BC;strokeColor=#A15745;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1221" y="690" width="20" height="20" as="geometry" />
+          <mxGeometry x="1410" y="640" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-195" value="3" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#E3C8BC;strokeColor=#A15745;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
           <mxGeometry x="1260" y="690" width="20" height="20" as="geometry" />
@@ -587,17 +587,17 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-204" value="5" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
           <mxGeometry x="1450" y="745" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-205" value="8" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1500" y="751" width="20" height="20" as="geometry" />
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-205" value="8" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#008a00;strokeColor=#005700;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1211" y="549.5" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-206" value="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
           <mxGeometry x="1380" y="745" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-207" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1410" y="751" width="20" height="20" as="geometry" />
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-207" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#f0a30a;strokeColor=#BD7000;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="1151" y="550" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-208" value="3" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1310" y="745" width="20" height="20" as="geometry" />
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-208" value="3" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#f0a30a;strokeColor=#BD7000;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="1171" y="550" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-209" value="4" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#fa6800;strokeColor=#C73500;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#FFFFFF;" vertex="1" parent="1">
           <mxGeometry x="670" y="228" width="20" height="20" as="geometry" />
@@ -682,6 +682,18 @@
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-239" value="Puzzle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="800" y="478" width="90" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-243" value="&lt;font color=&quot;#ffffff&quot;&gt;Ras Nsi quer trazer Dendar de volta&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Helvetica;fillColor=#f0a30a;spacingLeft=11;spacingRight=11;strokeColor=#BD7000;fontColor=#000000;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2407" y="603" width="139" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-244" value="5" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2400" y="595" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-245" value="5" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#f0a30a;strokeColor=#BD7000;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="1191" y="550" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-246" value="B" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1231" y="550" width="20" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
