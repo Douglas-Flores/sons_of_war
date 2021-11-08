@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-11-08T00:47:05.907Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="niXRu2e4QbamRJhgXt1J" version="15.7.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-08T00:54:00.113Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="VXSPsXbUdAzHS56Ygcdd" version="15.7.0" type="github">
   <diagram id="9cvskoMtvE0veRUgXZrD" name="Page-1">
     <mxGraphModel dx="3716" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -188,11 +188,17 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-173" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#000000;strokeColor=#7EA6E0;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-33" target="Mus7yZhnYwH2cR40hnjs-169">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-177" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#000000;strokeColor=#7EA6E0;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-32" target="Mus7yZhnYwH2cR40hnjs-176">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-32" value="Reduto dos Animais Feéricos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="-680" y="200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-33" value="Assentamento Phanaton" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="-960" y="200" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-178" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#000000;strokeColor=#7EA6E0;strokeWidth=1;" edge="1" parent="1" source="Mus7yZhnYwH2cR40hnjs-34" target="Mus7yZhnYwH2cR40hnjs-44">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-34" value="Covil dos Reptilianos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="-760" y="320" width="120" height="40" as="geometry" />
@@ -225,7 +231,7 @@
           <mxGeometry x="1040" y="200" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-44" value="Covil do Dragão" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="270" y="760" width="120" height="40" as="geometry" />
+          <mxGeometry x="-760" y="440" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-45" value="Baía da Tartaruga" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="-70" y="740" width="120" height="40" as="geometry" />
@@ -474,6 +480,9 @@
         </mxCell>
         <mxCell id="Mus7yZhnYwH2cR40hnjs-174" value="Podem dar rumores e odeiam as araneas" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=0;glass=0;dashed=1;labelBackgroundColor=none;sketch=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="-985" y="150" width="170" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-176" value="Foco dos Zumbis" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-600" y="320" width="120" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
