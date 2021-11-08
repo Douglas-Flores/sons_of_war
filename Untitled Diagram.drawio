@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-11-08T14:18:31.775Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="VvdUUoYSl7RGljlos0U0" version="15.7.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-08T14:22:52.382Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="t4DmaNW6o_B3OXYJBesl" version="15.7.0" type="github">
   <diagram id="9cvskoMtvE0veRUgXZrD" name="Page-1">
     <mxGraphModel dx="3076" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -188,10 +188,10 @@
         <mxCell id="Mus7yZhnYwH2cR40hnjs-30" value="Sheirtalar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-120" y="440" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Mus7yZhnYwH2cR40hnjs-242" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;shadow=0;dashed=1;dashPattern=1 1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=none;startFill=0;endArrow=halfCircle;endFill=0;strokeColor=#CDA2BE;strokeWidth=3;" parent="1" source="Mus7yZhnYwH2cR40hnjs-31" target="Mus7yZhnYwH2cR40hnjs-30" edge="1">
+        <mxCell id="Mus7yZhnYwH2cR40hnjs-242" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;shadow=0;dashed=1;dashPattern=1 1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;fontSize=16;fontColor=#FFFFFF;startArrow=none;startFill=0;endArrow=halfCircle;endFill=0;strokeColor=#CDA2BE;strokeWidth=3;" parent="1" source="Mus7yZhnYwH2cR40hnjs-31" target="Mus7yZhnYwH2cR40hnjs-30" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="600" y="460" />
+              <mxPoint x="600" y="450" />
               <mxPoint x="600" y="630" />
               <mxPoint x="20" y="630" />
               <mxPoint x="20" y="410" />
